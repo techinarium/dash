@@ -1,4 +1,4 @@
-<h2>Forgot your password?</h2>
+<!-- <h2>Forgot your password?</h2>
 
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
   <%= devise_error_messages! %>
@@ -13,4 +13,48 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<%= render "devise/shared/links" %> -->
+
+
+<div class="login-container">
+  <div class="login-pane">
+    <svg class="dash-logotype" xmlns="http://www.w3.org/2000/svg" width="688.082" height="149.952" viewBox="0 0 182.055 39.675">
+      <path class="dash-logotype-logo" d="M0 13.88h25.135v25.135H0zM0 .651h10.583v10.583H0zM27.78 13.88h10.584v25.135H27.78zM13.229.651h25.135v10.583H13.229z"/>
+      <g class="dash-logotype-text" aria-label="DASH" style="line-height:1.25" font-weight="400" font-size="40" font-family="IBM Plex Sans" letter-spacing="0" word-spacing="0">
+        <path d="M50.07 39.015h12.859c9.561 0 15.716-6.374 15.716-19.178C78.645 7.034 72.49.66 62.929.66H50.07zm4.616-4.066V4.726h8.243c6.319 0 10.77 4.396 10.77 11.98v6.264c0 7.583-4.451 11.979-10.77 11.979zM115.196 39.015L101.788.66h-5.88L82.5 39.015h4.67l3.847-11.32h15.496l3.847 11.32zm-9.837-15.386H92.116L98.6 4.946h.275zM132.32 39.675c8.243 0 13.188-4.506 13.188-11.54 0-5.715-3.242-9.012-10.715-10.715l-3.133-.715c-4.835-1.099-7.198-2.747-7.198-6.374 0-4.122 3.022-6.265 7.913-6.265 4.45 0 7.363 1.814 9.451 4.726l3.462-2.528C142.431 2.198 138.365 0 132.595 0 125.066 0 119.9 3.682 119.9 10.496c0 5.88 3.847 8.957 10.825 10.55l3.133.715c5.055 1.154 7.088 2.967 7.088 6.594 0 4.396-2.967 7.253-8.462 7.253-4.451 0-7.638-1.923-10.331-5.495l-3.407 2.858c3.077 4.176 7.418 6.704 13.573 6.704zM177.44 39.015h4.615V.66h-4.616v16.046h-19.398V.66h-4.616v38.356h4.616V20.772h19.398z" style="-inkscape-font-specification:'IBM Plex Sans'"/>
+      </g>
+    </svg>
+
+    <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+      <%= f.email_field :email, class: "login-input", placeholder: "email@example.com" %>
+
+      <%= f.submit "RESET PASSWORD", class: "login-button" %>
+    <% end %>
+
+    <div class="devise-links">
+      <div class="login-signup-links">
+        <%- if devise_mapping.registerable? && controller_name != 'registrations' %>
+          <%= link_to "Sign up.", new_registration_path(resource_name) %>
+        <% end -%>
+
+        <%- if controller_name != 'sessions' %>
+          <%= link_to "Sign in.", new_session_path(resource_name) %>
+        <% end -%>
+      </div>
+
+      <%- if devise_mapping.confirmable? && controller_name != 'confirmations' %>
+        <%= link_to "Didn't receive confirmation instructions?", new_confirmation_path(resource_name) %><br />
+      <% end -%>
+
+      <%- if devise_mapping.lockable? && resource_class.unlock_strategy_enabled?(:email) && controller_name != 'unlocks' %>
+        <%= link_to "Didn't receive unlock instructions?", new_unlock_path(resource_name) %><br />
+      <% end -%>
+
+      <%- if devise_mapping.omniauthable? %>
+        <%- resource_class.omniauth_providers.each do |provider| %>
+          <%= link_to "Sign in with #{OmniAuth::Utils.camelize(provider)}", omniauth_authorize_path(resource_name, provider) %><br />
+        <% end -%>
+      <% end -%>
+    </div>
+  </div>
+</div>

@@ -49,10 +49,11 @@
   color: var(--bg-color);
   padding: 0.4em 1.2em;
   font-size: 1.1em;
+  margin-top: 0.75em;
 }
 
 .login-remember {
-  margin-bottom: 1.3em;
+  margin-bottom: 0.55em;
   display: flex;
   // justify-content: space-between;
 }
@@ -107,7 +108,7 @@
   text-decoration: none;
   color: #a6a6a6;
   font-size: 0.8em;
-  margin: 1em 0 1em 0;
+  margin: 1em 0 0 0;
 
   &:hover {
     text-decoration: underline;
@@ -116,9 +117,15 @@
 }
 
 .login-signup-links {
+  margin-top: 2em;
   a {
     text-decoration: none;
     color: var(--text-color);
+    display: block;
+
+    &:not(:last-child) {
+      margin-bottom: 1em;
+    }
 
     &:hover {
       text-decoration: underline;
