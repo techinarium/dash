@@ -1,0 +1,32 @@
+*, *:before, *:after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  --accent-color: #72C1ED;
+  // --accent-color: #ff4f4f;
+  --fonts: 'IBM Plex Sans', 'Helvetica Neue', 'Helvetica', 'Arial', sans-serif;
+
+  // Light theme colors (default)
+  --text-color: #000;
+  --bg-color: #fff;
+  --input-box-color: #ededed;
+
+  // Add class to the document body to enable dark theme colors
+  &.dark-theme {
+    --text-color: #F4F1D0;
+    --bg-color: #222;
+    --input-box-color: #444343;
+  }
+
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  font-family: var(--fonts);
+}
+
+input {
+  font-family: var(--font);
+  font-size: 1em;
+}
