@@ -4,6 +4,30 @@
   box-sizing: border-box;
 }
 
+@font-face {
+    font-family: 'IBM Plex Mono';
+    src: asset-url('ibmplexmono-regular-webfont.woff2') format('woff2'),
+         asset-url('ibmplexmono-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: asset-url('ibmplexsans-semibold-webfont.woff2') format('woff2'),
+         asset-url('ibmplexsans-semibold-webfont.ttf') format('truetype');
+    font-weight: bold;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'IBM Plex Sans';
+    src: asset-url('ibmplexsans-regular-webfont.woff2') format('woff2'),
+         asset-url('ibmplexsans-regular-webfont.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
 body {
   --accent-color: #72C1ED;
   // --accent-color: #ff4f4f;
