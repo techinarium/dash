@@ -54,3 +54,11 @@ input {
   font-family: var(--font);
   font-size: 1em;
 }
+
+.notice {
+  color: var(--accent-color);
+}
+
+.alert {
+  color: #ff0000;
+}
