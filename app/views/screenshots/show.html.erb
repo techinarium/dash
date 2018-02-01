@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Screenshot url:</strong>
+  <%= @screenshot.screenshot_url %>
+</p>
+
+<p>
+  <strong>Widget:</strong>
+  <%= @screenshot.widget %>
+</p>
+
+<%= link_to 'Edit', edit_screenshot_path(@screenshot) %> |
+<%= link_to 'Back', screenshots_path %>

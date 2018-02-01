@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :screenshots
+  resources :widgets
   devise_for :users
 
   get 'dashboard/index'
