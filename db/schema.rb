@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180201213523) do
+ActiveRecord::Schema.define(version: 20180201235842) do
 
   create_table "screenshots", force: :cascade do |t|
     t.string "screenshot_url"
@@ -43,6 +43,24 @@ ActiveRecord::Schema.define(version: 20180201213523) do
     t.string "accent_color"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "widget_codes", force: :cascade do |t|
+    t.text "widget_code"
+    t.string "version"
+    t.integer "widget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["widget_id"], name: "index_widget_codes_on_widget_id"
+  end
+
+  create_table "widget_installs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "widget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_widget_installs_on_user_id"
+    t.index ["widget_id"], name: "index_widget_installs_on_widget_id"
   end
 
   create_table "widgets", force: :cascade do |t|
