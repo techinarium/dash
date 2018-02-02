@@ -62,3 +62,11 @@ input {
 .alert {
   color: #ff0000;
 }
+
+div.field_with_errors {
+  display: inline;
+
+  input {
+    background-color: #ffcccc;
+  }
+}

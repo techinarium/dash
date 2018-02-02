@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @widget_install.user %>
+</p>
+
+<p>
+  <strong>Widget:</strong>
+  <%= @widget_install.widget %>
+</p>
+
+<%= link_to 'Edit', edit_widget_install_path(@widget_install) %> |
+<%= link_to 'Back', widget_installs_path %>
