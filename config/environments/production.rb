@@ -13,6 +13,7 @@ Rails.application.configure do
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
+  config.action_mailer.perform_deliveries = true
 
   # Attempt to read encrypted secrets from `config/secrets.yml.enc`.
   # Requires an encryption key in `ENV["RAILS_MASTER_KEY"]` or
@@ -90,6 +91,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # For Devise gem
-  # In production, :host should be set to the actual host of your application :TODO
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # In production, :host should be set to the actual host of your application
+  config.action_mailer.default_url_options = { host: 'techinarium-dash.herokuapp.com' }
 end
