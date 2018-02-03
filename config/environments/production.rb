@@ -91,6 +91,6 @@ Rails.application.configure do
   config.active_record.dump_schema_after_migration = false
 
   # For Devise gem
-  # In production, :host should be set to the actual host of your application :TODO
-  # config.action_mailer.default_url_options = { host: 'localhost', port: 3000 }
+  # In production, :host should be set to the actual host of your application
+  config.action_mailer.default_url_options = { host: 'techinarium-dash.herokuapp.com' }
 end
