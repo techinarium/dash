@@ -1,0 +1,32 @@
+<%= form_with(model: widget_instance, local: true) do |form| %>
+  <% if widget_instance.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(widget_instance.errors.count, "error") %> prohibited this widget_instance from being saved:</h2>
+
+      <ul>
+      <% widget_instance.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :user_id %>
+    <%= form.text_field :user_id, id: :widget_instance_user_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :widget_id %>
+    <%= form.text_field :widget_id, id: :widget_instance_widget_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :data %>
+    <%= form.text_area :data, id: :widget_instance_data %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>
