@@ -69,6 +69,6 @@ class WidgetCodesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def widget_code_params
-      params.require(:widget_code).permit(:widget_code, :version, :widget_id)
+      params.require(:widget_code).permit(:widget_code, :version, :widget_id, :published)
     end
 end
