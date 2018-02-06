@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180203000637) do
+ActiveRecord::Schema.define(version: 20180206003023) do
 
   create_table "screenshots", force: :cascade do |t|
     t.string "screenshot_url"
@@ -55,6 +55,7 @@ ActiveRecord::Schema.define(version: 20180203000637) do
     t.integer "widget_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "published"
     t.index ["widget_id"], name: "index_widget_codes_on_widget_id"
   end
 
@@ -65,6 +66,16 @@ ActiveRecord::Schema.define(version: 20180203000637) do
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_widget_installs_on_user_id"
     t.index ["widget_id"], name: "index_widget_installs_on_widget_id"
+  end
+
+  create_table "widget_instances", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "widget_id"
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_widget_instances_on_user_id"
+    t.index ["widget_id"], name: "index_widget_instances_on_widget_id"
   end
 
   create_table "widgets", force: :cascade do |t|

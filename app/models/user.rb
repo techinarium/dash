@@ -6,4 +6,12 @@ class User < ApplicationRecord
          :validatable, :confirmable
 
   has_many :widget_installs
+  has_many :widget_instances
+
+  protected
+
+  # Turn off confirmation - for development only
+  #def confirmation_required?
+  #  false
+  #end
 end
