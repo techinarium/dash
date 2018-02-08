@@ -11,7 +11,7 @@ class User < ApplicationRecord
   protected
 
   # Turn off confirmation - for development only
-  #def confirmation_required?
-  #  false
-  #end
+  def confirmation_required?
+   false
+  end
 end
