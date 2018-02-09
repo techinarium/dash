@@ -9,14 +9,6 @@
   </head>
 
   <body>
-    <!-- start navigation -->
-    <!-- <%= link_to "Dash", root_path %> -->
-    <% if user_signed_in? %>
-      <%= link_to "Settings", edit_user_registration_path %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% end %>
-    <!-- end navigation -->
-
-    <%= yield %>
+  <%= yield %>
   </body>
 </html>

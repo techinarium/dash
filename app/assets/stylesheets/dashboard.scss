@@ -1,0 +1,115 @@
+//NAVIGATION/MENU
+nav {
+  padding: 18px;
+}
+
+main {
+  display: block;
+  width: 77%;
+  margin: 0 auto;
+  padding-left: 14px;
+}
+
+.temp-widget {
+  margin: 5px;
+  display: inline-block;
+  background-color: #eee;
+  width: 100px;
+  height: 100px;
+}
+
+.hello {
+  width: 49%;
+  display: inline-block;
+  line-height: 50px;
+  vertical-align: middle;
+}
+
+.menu {
+  width: 49%;
+  display: inline-block;
+  text-align: right;
+  vertical-align: middle;
+  line-height: 50px;
+
+  h4 {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  h4:last-of-type{
+    margin-right: 0;
+  }
+
+  h4 a {
+    text-decoration: none;
+    color: black;
+  }
+
+  h4 a:hover {
+    color: var(--accent-color)
+  }
+}
+
+//WIDGET LIST
+#widget-list {
+  display: inline-block;
+  width: 20%;
+  vertical-align: top;
+  visibility: collapse;
+
+  #create-widget-btn {
+    display: block;
+    background-color: var(--accent-color);
+    color: white;
+    font-size: 14px;
+    padding: 12px;
+    text-align: center;
+    text-decoration: none;
+    margin-top: 100px;
+  }
+}
+
+.widget-logo {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  background-color: #d0d0d0;
+  margin-right: 8px;
+}
+
+#widget-info {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  a {
+    margin-top: -5px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+}
+
+.widget-list-tab {
+  color: black;
+  display: inline-block;
+  width: 49%;
+  text-align: center;
+  padding: 6px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+}
+
+.widget-list-tab:hover {
+  color: var(--accent-color);
+}
+
+.active-tab {
+  border-bottom: 2px solid black;
+}
+
+#my-widgets, #installed-widgets {
+  margin-top: 12px;
+}

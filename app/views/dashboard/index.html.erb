@@ -7,4 +7,110 @@
   </p>
 <% end %>
 
-<p>Dashboard goes here</p>
+<!-- start navigation -->
+<nav>
+  <div class="hello">
+    <% if user_signed_in? %>
+      <h4>Hello,
+        <!-- show full name if defined. Else, show username. Else, show email address. -->
+        <% if !current_user.full_name.nil? %>
+          <%= current_user.full_name %>.
+        <% elsif !current_user.user_name.nil? %>
+          <%= current_user.user_name %>.
+        <% elsif !current_user.email.nil? %>
+          <%= current_user.email %>.
+        <% end %>
+
+        It's currently <%= Time.now.strftime("%I:%M %p")%> on <%= Time.now.strftime("%A") %>.
+      </h4>
+    <% end %>
+  </div>
+
+  <div class="menu">
+    <h4 class="menu-link"><%= link_to "Account Settings", edit_user_registration_path %></h4>
+    <h4 class="menu-link"><a href="#">Widget Store</a></h4>
+    <h4 class="menu-link"><%= link_to "Logout", destroy_user_session_path, method: :delete %></h4>
+
+    <h4><a id="menuBtn" href="#">MENU</a></h4>
+    <!-- <%= link_to "Dash", root_path %> -->
+  </div>
+</nav>
+<!-- end navigation -->
+
+<main>
+  <!-- TEMPORARY WIDGET PLACEHOLDERS FOR NOW -->
+  <% 60.times do %>
+    <div class="temp-widget"></div>
+  <% end %>
+</main>
+
+
+<!-- WIDGET LIST -->
+<section id="widget-list">
+  <a href="" class="widget-list-tab active-tab" id="my-widgets-tab">My Widgets</a>
+  <a href="" class="widget-list-tab" id="installed-widgets-tab">Installed</a>
+
+  <!-- "MY WIDGETS" -->
+  <div id="my-widgets">
+  <!-- have one of these divs for each widget in list -->
+  <div class="widget-list-item">
+    <div class="widget-logo">
+      <!-- Logo image will go here. For now, just a gray box -->
+    </div>
+
+    <div id="widget-info">
+      <h4>My Widget 1</h4>
+      <p>A short description.</p>
+      <a href="#">Add +</a>
+      <a href="#">Edit</a>
+      <a href="#">Store Page</a>
+    </div>
+  </div>
+
+  <div class="widget-list-item">
+    <div class="widget-logo">
+      <!-- Logo image will go here. For now, just a gray box -->
+    </div>
+
+    <div id="widget-info">
+      <h4>My Widget 2</h4>
+      <p>A short description.</p>
+      <a href="#">Add +</a>
+      <a href="#">Edit</a>
+      <a href="#">Store Page</a>
+    </div>
+  </div>
+</div>
+
+  <!-- "INSTALLED" WIDGETS -->
+  <div id="installed-widgets">
+    <!-- have one of these divs for each widget in list -->
+    <div class="widget-list-item">
+      <div class="widget-logo">
+        <!-- Logo image will go here. For now, just a gray box -->
+      </div>
+
+      <div id="widget-info">
+        <h4>Installed Widget 1</h4>
+        <p>A short description.</p>
+        <a href="#">Add +</a>
+        <a href="#">Store Page</a>
+      </div>
+    </div>
+
+    <div class="widget-list-item">
+      <div class="widget-logo">
+        <!-- Logo image will go here. For now, just a gray box -->
+      </div>
+
+      <div id="widget-info">
+        <h4>Installed Widget 2</h4>
+        <p>A short description.</p>
+        <a href="#">Add +</a>
+        <a href="#">Store Page</a>
+      </div>
+    </div>
+  </div>
+
+  <a id="create-widget-btn" href="">Create a new widget</a>
+</section>
