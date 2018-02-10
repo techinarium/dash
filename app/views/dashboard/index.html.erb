@@ -1,5 +1,5 @@
 <% if notice || alert %>
-  <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0">
+  <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0; position: absolute; top: 5px; left: 10px;">
     &nbsp;
     <span class="notice"><%= notice %></span>
     <span class="alert"><%= alert %></span>
@@ -13,11 +13,11 @@
     <% if user_signed_in? %>
       <h4>Hello,
         <!-- show full name if defined. Else, show username. Else, show email address. -->
-        <% if !current_user.full_name.nil? %>
+        <% if !current_user.full_name.nil? && current_user.full_name != "" %>
           <%= current_user.full_name %>.
-        <% elsif !current_user.user_name.nil? %>
+        <% elsif !current_user.user_name.nil? && current_user.user_name != "" %>
           <%= current_user.user_name %>.
-        <% elsif !current_user.email.nil? %>
+        <% elsif !current_user.email.nil? && current_user.email != "" %>
           <%= current_user.email %>.
         <% end %>
 

@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('turbolinks:load', function(){
     $("#installed-widgets").hide();
     $(".menu-link").hide(); //hide the Account Settings, Logout & Widget Store links
 
@@ -7,13 +7,13 @@ document.addEventListener('DOMContentLoaded', function(){
         if(this.innerHTML === "MENU"){
             //change text to "close", then show links & widget list
             this.innerHTML = "CLOSE";
-            $(".menu-link").fadeToggle();
+            $(".menu-link").fadeIn();
             $("#widget-list").css("visibility", "visible").fadeIn();
             $("main").css("display", "inline-block");
         } else if (this.innerHTML === "CLOSE"){
             //change link back to "MENU", hide links and widget list
             this.innerHTML = "MENU";
-            $(".menu-link").fadeToggle();
+            $(".menu-link").fadeOut();
             $("#widget-list").css("display", "none");
             $("main").css("display", "block");
         }

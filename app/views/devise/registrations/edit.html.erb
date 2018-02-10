@@ -1,6 +1,16 @@
+<nav>
+  <div class="menu" style="width: 100%;">
+    <h4 class="menu-link"><%= link_to "Home", root_path %></h4>
+    <h4 class="menu-link"><a href="#">Widget Store</a></h4>
+    <h4 class="menu-link"><%= link_to "Logout", destroy_user_session_path, method: :delete %></h4>
+
+    <h4><a id="menuBtn" href="#">MENU</a></h4>
+  </div>
+</nav>
+
 <div class="login-container", style="top: 100px; bottom: 100px;">
   <div class="login-pane">
-    <h1 style="text-align: center;">Settings</h1>
+    <h1 style="text-align: center;">Account Settings</h1>
 
     <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0">
       &nbsp;
