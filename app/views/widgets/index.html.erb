@@ -1,22 +1,22 @@
 <% if notice || alert %>
-  <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0; position: absolute; top: 5px; left: 0px;">
-    &nbsp;
-    <span class="notice"><%= notice %></span>
-    <span class="alert"><%= alert %></span>
-    &nbsp;
+  <p class="general-alerts">
+    <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
   </p>
 <% end %>
+
 <nav>
   <%= render 'shared/menu' %>
 </nav>
 
-<main>
-  <div class="login-container", style="top: 100px; bottom: 100px;">
-    <div class="login-pane">
-      <h1 style="text-align: center;">Widget Store</h1>
-    </div>
+<div class="store-container">
+  <div class="store-pane">
+    <h1>Widget Store</h1>
+
+    <% @widgets.each do |widget| %>
+      <%= link_to raw("<figure>") + image_tag(widget.logo_url, alt: widget.widget_name) + raw("<figcaption>") + widget.widget_name + raw("</figcaption></figure>"), widget %>
+    <% end %>
   </div>
-</main>
+</div>
 
 <!--
 <table>
