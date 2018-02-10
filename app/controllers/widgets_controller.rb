@@ -1,10 +1,11 @@
 class WidgetsController < ApplicationController
+  before_action :confirm_login
   before_action :set_widget, only: [:show, :edit, :update, :destroy]
 
   # GET /widgets
   # GET /widgets.json
   def index
-    @widgets = Widget.all
+    @widgets = Widget.joins(:widget_codes).where('published == ?', true).uniq
   end
 
   # GET /widgets/1

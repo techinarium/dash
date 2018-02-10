@@ -1,9 +1,6 @@
 <% if notice || alert %>
-  <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0">
-    &nbsp;
-    <span class="notice"><%= notice %></span>
-    <span class="alert"><%= alert %></span>
-    &nbsp;
+  <p class="general-alerts">
+    <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
   </p>
 <% end %>
 
@@ -13,11 +10,11 @@
     <% if user_signed_in? %>
       <h4>Hello,
         <!-- show full name if defined. Else, show username. Else, show email address. -->
-        <% if !current_user.full_name.nil? %>
+        <% if !current_user.full_name.nil? && current_user.full_name != "" %>
           <%= current_user.full_name %>.
-        <% elsif !current_user.user_name.nil? %>
+        <% elsif !current_user.user_name.nil? && current_user.user_name != "" %>
           <%= current_user.user_name %>.
-        <% elsif !current_user.email.nil? %>
+        <% elsif !current_user.email.nil? && current_user.email != "" %>
           <%= current_user.email %>.
         <% end %>
 
@@ -26,14 +23,7 @@
     <% end %>
   </div>
 
-  <div class="menu">
-    <h4 class="menu-link"><%= link_to "Account Settings", edit_user_registration_path %></h4>
-    <h4 class="menu-link"><a href="#">Widget Store</a></h4>
-    <h4 class="menu-link"><%= link_to "Logout", destroy_user_session_path, method: :delete %></h4>
-
-    <h4><a id="menuBtn" href="#">MENU</a></h4>
-    <!-- <%= link_to "Dash", root_path %> -->
-  </div>
+  <%= render 'shared/menu' %>
 </nav>
 <!-- end navigation -->
 

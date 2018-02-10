@@ -1,4 +1,5 @@
 class WidgetInstancesController < ApplicationController
+  before_action :confirm_login
   before_action :set_widget_instance, only: [:show, :edit, :update, :destroy]
 
   # GET /widget_instances

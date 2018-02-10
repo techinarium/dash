@@ -1,4 +1,5 @@
 class ScreenshotsController < ApplicationController
+  before_action :confirm_login
   before_action :set_screenshot, only: [:show, :edit, :update, :destroy]
 
   # GET /screenshots

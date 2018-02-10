@@ -1,4 +1,5 @@
 class WidgetInstallsController < ApplicationController
+  before_action :confirm_login
   before_action :set_widget_install, only: [:show, :edit, :update, :destroy]
 
   # GET /widget_installs
