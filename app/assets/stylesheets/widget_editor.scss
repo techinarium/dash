@@ -4,7 +4,7 @@
 	right: 0;
 	bottom: 0;
 	left: 0;
-	background-color: rgba(255, 255, 255, 0.5);
+	background-color: rgba(0, 0, 0, 0.75);
 	display: flex;
 	align-items: center;
 	justify-content: center;
@@ -26,19 +26,24 @@
 }
 
 #widget-editor {
+	background-color: #fff;
+	padding: 1em;
+
 	transform: translateY(20px);
 	opacity: 0;
 	transition: transform 200ms,
 	            opacity 200ms;
 
-	width: 650px;
-	height: 500px;
-
-	.editor-toolbar {
-		border: 1px solid green;
-	}
+	width: 100%;
+	max-width: 800px;
 }
 
-#widget-code {
-	border: 1px solid orange;
+.editor-toolbar-item {
+	line-height: 30px;
+	display: inline-block;
+	padding: 0.25em 0.5em;
+	color: #fff;
+	text-decoration: none;
+
+	background-color: var(--accent-color);
 }

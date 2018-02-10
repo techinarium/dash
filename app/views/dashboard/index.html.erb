@@ -62,7 +62,7 @@
       <h4>My Widget 1</h4>
       <p>A short description.</p>
       <a href="#">Add +</a>
-      <a href="#">Edit</a>
+      <a href="#" data-widget-action="edit">Edit</a>
       <a href="#">Store Page</a>
     </div>
   </div>
@@ -76,7 +76,7 @@
       <h4>My Widget 2</h4>
       <p>A short description.</p>
       <a href="#">Add +</a>
-      <a href="#">Edit</a>
+      <a href="#" data-widget-action="edit">Edit</a>
       <a href="#">Store Page</a>
     </div>
   </div>
@@ -112,7 +112,7 @@
     </div>
   </div>
 
-  <a id="create-widget-btn" href="">Create a new widget</a>
+  <a id="create-widget-btn" href="" data-widget-action="create">Create a new widget</a>
 </section>
 
 <%= render 'partials/widget_editor' %>

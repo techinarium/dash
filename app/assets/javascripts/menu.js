@@ -36,4 +36,26 @@ document.addEventListener('DOMContentLoaded', function(){
         $("#my-widgets").hide();
         $("#installed-widgets").fadeIn();
     });
+
+    // Open widget editor when 'Edit' buttons are clicked
+    $("[data-widget-action=edit]").click(function(e) {
+      e.preventDefault();
+
+      if (WidgetEditor) {
+        WidgetEditor.open();
+      } else {
+        console.warn('Widget Editor is not loaded yet');
+      }
+    });
+
+    // Also open widget editor when 'Create' button is clicked
+    $("[data-widget-action=create]").click(function(e) {
+      e.preventDefault();
+
+      if (WidgetEditor) {
+        WidgetEditor.open();
+      } else {
+        console.warn('Widget Editor is not loaded yet');
+      }
+    });
 }, false);
