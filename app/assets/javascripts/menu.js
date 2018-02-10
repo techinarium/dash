@@ -1,5 +1,6 @@
 document.addEventListener('turbolinks:load', function(){
     $("#installed-widgets").hide();
+    $("#widget-list").css("display", "none");
     $(".menu-link").hide(); //hide the Account Settings, Logout & Widget Store links
 
     $("#menuBtn").click(function(e){

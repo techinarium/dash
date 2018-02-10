@@ -1,9 +1,6 @@
 <% if notice || alert %>
-  <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0; position: absolute; top: 5px; left: 10px;">
-    &nbsp;
-    <span class="notice"><%= notice %></span>
-    <span class="alert"><%= alert %></span>
-    &nbsp;
+  <p class="general-alerts">
+    <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
   </p>
 <% end %>
 
@@ -26,14 +23,7 @@
     <% end %>
   </div>
 
-  <div class="menu">
-    <h4 class="menu-link"><%= link_to "Account Settings", edit_user_registration_path %></h4>
-    <h4 class="menu-link"><a href="#">Widget Store</a></h4>
-    <h4 class="menu-link"><%= link_to "Logout", destroy_user_session_path, method: :delete %></h4>
-
-    <h4><a id="menuBtn" href="#">MENU</a></h4>
-    <!-- <%= link_to "Dash", root_path %> -->
-  </div>
+  <%= render 'shared/menu' %>
 </nav>
 <!-- end navigation -->
 

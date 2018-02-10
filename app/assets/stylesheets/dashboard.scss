@@ -1,7 +1,8 @@
 //NAVIGATION/MENU
 nav {
   padding: 18px;
-  clear: both;
+  display: flex;
+  justify-content: flex-end;
 }
 
 main {
@@ -28,7 +29,6 @@ main {
 
 .menu {
   width: 49%;
-  float: right;
   display: inline-block;
   text-align: right;
   vertical-align: middle;

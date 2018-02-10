@@ -1,7 +1,24 @@
-<p id="notice"><%= notice %></p>
+<% if notice || alert %>
+  <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0; position: absolute; top: 5px; left: 0px;">
+    &nbsp;
+    <span class="notice"><%= notice %></span>
+    <span class="alert"><%= alert %></span>
+    &nbsp;
+  </p>
+<% end %>
+<nav>
+  <%= render 'shared/menu' %>
+</nav>
 
-<h1>Widgets</h1>
+<main>
+  <div class="login-container", style="top: 100px; bottom: 100px;">
+    <div class="login-pane">
+      <h1 style="text-align: center;">Widget Store</h1>
+    </div>
+  </div>
+</main>
 
+<!--
 <table>
   <thead>
     <tr>
@@ -29,3 +46,4 @@
 <br>
 
 <%= link_to 'New Widget', new_widget_path %>
+-->
