@@ -1,49 +1,49 @@
 #widget-editor-container {
-	position: absolute;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-	background-color: rgba(0, 0, 0, 0.75);
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	z-index: 100;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  background-color: rgba(0, 0, 0, 0.75);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
 
-	opacity: 0;
-	pointer-events: none;
-	transition: opacity 200ms;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 200ms;
 
-	&.open {
-		opacity: 1;
-		pointer-events: all;
+  &.open {
+    opacity: 1;
+    pointer-events: all;
 
-		#widget-editor {
-			transform: translateY(0);
-			opacity: 1;
-		}
-	}
+    #widget-editor {
+      transform: translateY(0);
+      opacity: 1;
+    }
+  }
 }
 
 #widget-editor {
-	background-color: #fff;
-	padding: 1em;
+  background-color: #fff;
+  padding: 1em;
 
-	transform: translateY(20px);
-	opacity: 0;
-	transition: transform 200ms,
-	            opacity 200ms;
+  transform: translateY(20px);
+  opacity: 0;
+  transition: transform 200ms,
+              opacity 200ms;
 
-	width: 100%;
-	max-width: 800px;
+  width: 100%;
+  max-width: 800px;
 }
 
 .editor-toolbar-item {
-	line-height: 30px;
-	display: inline-block;
-	padding: 0.25em 0.5em;
-	color: #fff;
-	text-decoration: none;
+  line-height: 30px;
+  display: inline-block;
+  padding: 0.25em 0.5em;
+  color: #fff;
+  text-decoration: none;
 
-	background-color: var(--accent-color);
+  background-color: var(--accent-color);
 }
