@@ -6,6 +6,8 @@ document.addEventListener('DOMContentLoaded', function() {
 		textarea: document.getElementById('widget-code'),
 		toolbar: document.getElementById('editor-toolbar'),
 	}
+	let currentWidget;
+	let currentCode;
 
 	const editor = CodeMirror.fromTextArea(el.textarea, {
 		mode: 'javascript'
@@ -15,15 +17,37 @@ document.addEventListener('DOMContentLoaded', function() {
 
 	const toolbarActions = {
 		save() {
-			console.log('SAVING', editor.getValue())
+			if (currentCode) {
+				currentCode.widget_code = editor.getValue()
+
+				$.ajax({
+					url: `/widget_codes/${currentCode.id}.json`,
+					data: {
+						widget_code: currentCode,
+						authenticity_token: $('[name="csrf-token"]')[0].content,
+					},
+					dataType: 'json',
+					method: 'PUT',
+					complete(response) {
+						console.log('saved')
+					},
+					error(err) {
+						console.error('save failed', err)
+					}
+				})
+			}
 		},
 		close() {
+			if (currentCode && currentCode.widget_code !== editor.getValue()) {
+				const doSave = confirm('You have unsaved changes. Do you want to save them?')
+
+				if (doSave) this.save()
+			}
 			e.close()
 		}
 	}
 
 	document.querySelectorAll('[data-toolbar-action]').forEach(item => {
-		console.log(item)
 		const action = item.getAttribute('data-toolbar-action')
 
 		// Run whichever action is specified in the data attribute.
@@ -33,7 +57,22 @@ document.addEventListener('DOMContentLoaded', function() {
 		})
 	})
 
-	e.open = function(content) {
+	e.setCurrentWidget = function(widgetData) {
+		currentWidget = widgetData
+		currentCode = currentWidget.codes[0]
+	}
+
+	e.open = function(widgetData) {
+		if (widgetData) {
+			e.setCurrentWidget(widgetData)
+		}
+
+		console.log(currentWidget, currentCode)
+
+		let content = currentCode.widget_code
+
+		// const content = currentCode.widget_code
+
 		if (!content) {
 			content = `
 Dash.widget('v0', widget => {
@@ -59,5 +98,5 @@ Dash.widget('v0', widget => {
 
 	window.WidgetEditor = e
 
-	console.log('hello')
+	console.log('Widget Editor loaded')
 })
