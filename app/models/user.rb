@@ -7,6 +7,7 @@ class User < ApplicationRecord
 
   has_many :widget_installs
   has_many :widget_instances
+  has_many :widgets
 
   protected
 

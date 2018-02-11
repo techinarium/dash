@@ -3,12 +3,13 @@
   <head>
     <title>Dash</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="/codemirror/codemirror.js"></script>
+    <script src="/codemirror/mode/javascript/javascript.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-  <%= yield %>
+    <%= yield %>
   </body>
 </html>

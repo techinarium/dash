@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180206003023) do
+ActiveRecord::Schema.define(version: 20180211224325) do
 
   create_table "screenshots", force: :cascade do |t|
     t.string "screenshot_url"
@@ -84,6 +84,8 @@ ActiveRecord::Schema.define(version: 20180206003023) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "deleted", default: false
   end
 
 end
