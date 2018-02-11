@@ -1,0 +1,47 @@
+// Devise gem - registrations/edit
+
+.account-settings-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.account-settings-pane {
+  max-width: 300px;
+  width: 100%;
+  padding: 1em;
+  margin: 0 auto;
+
+  h1 {
+    text-align: center;
+  }
+}
+
+.account-settings-input,
+.account-settings-button {
+  border: 0;
+  outline: 0;
+  width: 100%;
+}
+
+.account-settings-input {
+  background-color: var(--input-box-color);
+  padding: 0.6em 1.2em;
+  margin-bottom: 0.75em;
+  color: var(--text-color);
+}
+
+.account-settings-button {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  padding: 0.4em 1.2em;
+  font-size: 1.1em;
+  margin-top: 0.75em;
+  cursor: pointer;
+}
+
+.account-settings-alerts {
+  font-size: 0.9em;
+  text-align: center;
+  margin: 0.2em 0;
+}

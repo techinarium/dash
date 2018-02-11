@@ -1,7 +1,24 @@
-<p id="notice"><%= notice %></p>
+<% if notice || alert %>
+  <p class="general-alerts">
+    <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
+  </p>
+<% end %>
 
-<h1>Widgets</h1>
+<nav>
+  <%= render 'shared/menu' %>
+</nav>
 
+<div class="store-container">
+  <div class="store-pane">
+    <h1>Widget Store</h1>
+
+    <% @widgets.each do |widget| %>
+      <%= link_to raw("<figure>") + image_tag(widget.logo_url, alt: widget.widget_name) + raw("<figcaption>") + widget.widget_name + raw("</figcaption></figure>"), widget %>
+    <% end %>
+  </div>
+</div>
+
+<!--
 <table>
   <thead>
     <tr>
@@ -29,3 +46,4 @@
 <br>
 
 <%= link_to 'New Widget', new_widget_path %>
+-->

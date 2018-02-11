@@ -25,11 +25,8 @@
       </g>
     </svg>
 
-    <p style="font-size: 0.9em; text-align: center; margin: 1em 0">
-      &nbsp;
-      <span class="notice"><%= notice %></span>
-      <span class="alert"><%= alert %></span>
-      &nbsp;
+    <p class="login-alerts">
+      <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
     </p>
 
     <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>

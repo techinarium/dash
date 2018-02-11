@@ -1,42 +1,41 @@
-<div class="login-container", style="top: 100px; bottom: 100px;">
-  <div class="login-pane">
-    <h1 style="text-align: center;">Settings</h1>
+<nav>
+  <%= render 'shared/menu' %>
+</nav>
 
-    <p style="font-size: 0.9em; text-align: center; margin: 0.2em 0">
-      &nbsp;
-      <span class="notice"><%= notice %></span>
-      <span class="alert"><%= alert %></span>
-      &nbsp;
+<div class="account-settings-container">
+  <div class="account-settings-pane">
+    <h1>Account Settings</h1>
+
+    <p class="account-settings-alerts">
+      <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
     </p>
 
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.label :user_name %><br />
-      <%= f.text_field :user_name, autocomplete: "user_name", class: "login-input" %>
+      <%= f.text_field :user_name, autocomplete: "user_name", class: "account-settings-input" %>
 
       <%= f.label :full_name %><br />
-      <%= f.text_field :full_name, autocomplete: "full_name", class: "login-input" %>
+      <%= f.text_field :full_name, autocomplete: "full_name", class: "account-settings-input" %>
 
       <%= f.label :company %><br />
-      <%= f.text_field :company, autocomplete: "company", class: "login-input" %>
+      <%= f.text_field :company, autocomplete: "company", class: "account-settings-input" %>
 
       <%= f.label :email %><br />
-      <%= f.email_field :email, autocomplete: "email", class: "login-input" %>
+      <%= f.email_field :email, autocomplete: "email", class: "account-settings-input" %>
 
       <%= f.label :password %> (leave blank if no change)<br />
-      <%= f.password_field :password, autocomplete: "off", class: "login-input" %>
+      <%= f.password_field :password, autocomplete: "off", class: "account-settings-input" %>
 
       <%= f.label :password_confirmation %><br />
-      <%= f.password_field :password_confirmation, autocomplete: "off", class: "login-input" %>
+      <%= f.password_field :password_confirmation, autocomplete: "off", class: "account-settings-input" %>
 
       <%= f.label :current_password %> (confirm changes)<br />
-      <%= f.password_field :current_password, autocomplete: "off", class: "login-input", placeholder: "**********" %>
+      <%= f.password_field :current_password, autocomplete: "off", class: "account-settings-input", placeholder: "**********" %>
 
-      <%= f.submit "UPDATE", class: "login-button" %>
+      <%= f.submit "UPDATE", class: "account-settings-button" %>
     <% end %>
 
     <p><%= button_to "CANCEL ACCOUNT", registration_path(resource_name), data: { confirm: "Are you sure?" }, method: :delete,
-                     class: "login-button", style: "background-color: #ff0000;" %></p>
-
-    <p><%= button_to "HOME", root_path , class: "login-button", method: :get %></p>
+                     class: "account-settings-button red-bg" %></p>
   </div>
 </div>

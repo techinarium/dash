@@ -1,4 +1,5 @@
 class WidgetCodesController < ApplicationController
+  before_action :confirm_login
   before_action :set_widget_code, only: [:show, :edit, :update, :destroy]
 
   # GET /widget_codes
