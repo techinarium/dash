@@ -7,7 +7,7 @@ class WidgetsController < ApplicationController
   def index
     @widgets = Widget.where(deleted: false) # Don't actually delete or the database will complain about FK
                      .joins(:widget_codes)
-                     .where(published: true)
+                     .where('published = ?', true)
                      .uniq
   end
 
