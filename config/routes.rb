@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  resources :widget_instances
+  resources :widget_installs
+  resources :widget_codes
+  resources :screenshots
+  resources :widgets
+
   devise_for :users
 
-  get 'dashboard/index'
+  #get 'dashboard/index'
 
   root 'dashboard#index'
 

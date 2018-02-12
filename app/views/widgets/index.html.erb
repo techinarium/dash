@@ -1,0 +1,49 @@
+<% if notice || alert %>
+  <p class="general-alerts">
+    <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
+  </p>
+<% end %>
+
+<nav>
+  <%= render 'shared/menu' %>
+</nav>
+
+<div class="store-container">
+  <div class="store-pane">
+    <h1>Widget Store</h1>
+
+    <% @widgets.each do |widget| %>
+      <%= link_to raw("<figure>") + image_tag(widget.logo_url, alt: widget.widget_name) + raw("<figcaption>") + widget.widget_name + raw("</figcaption></figure>"), widget %>
+    <% end %>
+  </div>
+</div>
+
+<!--
+<table>
+  <thead>
+    <tr>
+      <th>Widget name</th>
+      <th>Logo url</th>
+      <th>Description</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @widgets.each do |widget| %>
+      <tr>
+        <td><%= widget.widget_name %></td>
+        <td><%= widget.logo_url %></td>
+        <td><%= widget.description %></td>
+        <td><%= link_to 'Show', widget %></td>
+        <td><%= link_to 'Edit', edit_widget_path(widget) %></td>
+        <td><%= link_to 'Destroy', widget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Widget', new_widget_path %>
+-->

@@ -1,0 +1,27 @@
+<%= form_with(model: screenshot, local: true) do |form| %>
+  <% if screenshot.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(screenshot.errors.count, "error") %> prohibited this screenshot from being saved:</h2>
+
+      <ul>
+      <% screenshot.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :screenshot_url %>
+    <%= form.text_field :screenshot_url, id: :screenshot_screenshot_url %>
+  </div>
+
+  <div class="field">
+    <%= form.label :widget_id %>
+    <%= form.text_field :widget_id, id: :screenshot_widget_id %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

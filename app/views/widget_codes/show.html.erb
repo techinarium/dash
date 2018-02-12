@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Widget code:</strong>
+  <%= @widget_code.widget_code %>
+</p>
+
+<p>
+  <strong>Version:</strong>
+  <%= @widget_code.version %>
+</p>
+
+<p>
+  <strong>Widget:</strong>
+  <%= @widget_code.widget %>
+</p>
+
+<%= link_to 'Edit', edit_widget_code_path(@widget_code) %> |
+<%= link_to 'Back', widget_codes_path %>

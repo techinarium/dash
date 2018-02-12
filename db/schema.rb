@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180124231753) do
+ActiveRecord::Schema.define(version: 20180211224325) do
+
+  create_table "screenshots", force: :cascade do |t|
+    t.string "screenshot_url"
+    t.integer "widget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["widget_id"], name: "index_screenshots_on_widget_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,8 +41,51 @@ ActiveRecord::Schema.define(version: 20180124231753) do
     t.string "company"
     t.boolean "dark_theme", default: false
     t.string "accent_color"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+  end
+
+  create_table "widget_codes", force: :cascade do |t|
+    t.text "widget_code"
+    t.integer "version"
+    t.integer "widget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "published"
+    t.index ["widget_id"], name: "index_widget_codes_on_widget_id"
+  end
+
+  create_table "widget_installs", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "widget_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_widget_installs_on_user_id"
+    t.index ["widget_id"], name: "index_widget_installs_on_widget_id"
+  end
+
+  create_table "widget_instances", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "widget_id"
+    t.text "data"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_widget_instances_on_user_id"
+    t.index ["widget_id"], name: "index_widget_instances_on_widget_id"
+  end
+
+  create_table "widgets", force: :cascade do |t|
+    t.string "widget_name"
+    t.string "logo_url"
+    t.text "description"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.boolean "deleted", default: false
   end
 
 end

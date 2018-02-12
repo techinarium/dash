@@ -19,7 +19,7 @@
 .dash-logotype {
   width: 100%;
   height: 100%;
-  margin: 0 0 4em 0;
+  margin: 0 0 0.2em 0;
 }
 
 .dash-logotype-logo {
@@ -132,4 +132,10 @@
       color: var(--accent-color);
     }
   }
+}
+
+.login-alerts {
+  font-size: 0.9em;
+  text-align: center;
+  margin: 1em 0;
 }

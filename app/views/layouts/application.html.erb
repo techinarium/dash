@@ -3,30 +3,13 @@
   <head>
     <title>Dash</title>
     <%= csrf_meta_tags %>
-
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <script src="/codemirror/codemirror.js"></script>
+    <script src="/codemirror/mode/javascript/javascript.js"></script>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
-    <!-- start navigation -->
-    <!-- <%= link_to "Dash", root_path %> -->
-
-    <% if user_signed_in? %>
-      <%= link_to "Settings", edit_user_registration_path %>
-      <%= link_to "Logout", destroy_user_session_path, method: :delete %>
-    <% end %>
-    <!-- end navigation -->
-
-    <!-- start Devise flash messages -->
-    <% if notice %>
-      <p class="notice"><%= notice %></p>
-    <% end %>
-    <% if alert %>
-      <p class="alert"><%= alert %></p>
-    <% end %>
-    <!-- end Devise flash messages -->
-
     <%= yield %>
   </body>
 </html>

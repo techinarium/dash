@@ -7,14 +7,18 @@
       </g>
     </svg>
 
+    <p class="login-alerts">
+      <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
+    </p>
+
     <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-      <%= f.email_field :email, class: "login-input", placeholder: "email@example.com" %>
+      <%= f.email_field :email, class: "login-input", placeholder: "email@example.com", autofocus: true %>
       <!-- <%= f.password_field :password, autocomplete: "off", class: "login-input", placeholder: "**********" %> -->
 
       <!-- <% if @minimum_password_length %>
         <em>(<%= @minimum_password_length %> characters minimum)</em>
       <% end %> -->
-      <%= f.password_field :password, autocomplete: "off", class: "login-input", placeholder: "**********" %>
+      <%= f.password_field :password, autocomplete: "off", class: "login-input", placeholder: "********** (#{@minimum_password_length}+ characters)" %>
       <%= f.password_field :password_confirmation, autocomplete: "off", class: "login-input", placeholder: "********** again" %>
 
 
