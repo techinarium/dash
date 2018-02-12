@@ -100,7 +100,7 @@ document.addEventListener('turbolinks:load', function(){
             widget_name: widgetName,
             description: widgetDescription,
           },
-          authenticity_token: $('[name="csrf-token"]')[0].content
+          // authenticity_token: $('[name="csrf-token"]')[0].content
         },
         complete: function(response) {
           const widget = response.responseJSON;
