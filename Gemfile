@@ -30,6 +30,10 @@ gem 'jbuilder', '~> 2.5'
 # gem 'bcrypt', '~> 3.1.7'
 gem 'bcrypt', git: 'https://github.com/codahale/bcrypt-ruby.git', :require => 'bcrypt'
 
+# Transpile ES6 javascript
+gem 'sprockets'
+gem 'sprockets-es6'
+
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 

@@ -1,5 +1,8 @@
 {
   "name": "dash",
   "private": true,
-  "dependencies": {}
+  "dependencies": {},
+  "devDependencies": {
+    "babel-preset-env": "^1.6.1"
+  }
 }
