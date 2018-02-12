@@ -8,8 +8,10 @@
 
 # Generate entries for widget tables
 
-Widget.destroy_all
+# Destroy widget code first or the database complains
+# about its referential integrity.
 WidgetCode.destroy_all
+Widget.destroy_all
 
 (1..20).each do |i|
   widget = Widget.create(
