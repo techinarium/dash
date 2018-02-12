@@ -1,4 +1,4 @@
-// Widget store
+// Widget store page
 
 .store-container {
   display: flex;
@@ -13,6 +13,10 @@
   h1 {
     text-align: center;
     margin-bottom: 1em;
+  }
+
+  p {
+    text-align: center;
   }
 
   figure {
@@ -41,6 +45,25 @@
   }
 }
 
+// Store details page
+
+.store-details-container {
+  display: flex;
+}
+
+.store-details-pane {
+  padding: 1em;
+  margin: 0 auto;
+  display: block;
+  width: 77%;
+
+  h2 {
+    margin-bottom: 1em;
+  }
+}
+
+// General store styles
+
 .store-input,
 .store-button {
   border: 0;
@@ -62,4 +85,16 @@
   font-size: 1.1em;
   margin-top: 0.75em;
   cursor: pointer;
+}
+
+.widget-logo-bg {
+  background-color: #eee;
+  width: 100px;
+  height: 100px;
+  border-radius: 5px;
+
+  p {
+    line-height: 100px;
+    color: var(--text-color);
+  }
 }
