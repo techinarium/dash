@@ -18,14 +18,13 @@
           <figure>
             <div class="widget-logo-bg">
               <% if !widget.logo_url.nil? && widget.logo_url != "" %>
-                <%= image_tag(widget.logo_url, alt: widget.widget_name) %>
+                <%= image_tag widget.logo_url, alt: widget.widget_name %>
               <% else %>
                 <p>X</p>
               <% end %>
             </div>
             <figcaption>
               <span class="widget-title"><%= widget.widget_name %></span>
-
               <span class="widget-rating">
                 <% if (avg_rating = widget.reviews.all.average(:rating)).nil? %>
                   &#9734;
@@ -38,7 +37,7 @@
         <% end %>
       <% end %>
     <% else %>
-      <p>No widgets found. Sorry!</p>
+      <p>No widgets found</p>
     <% end %>
   </div>
 </div>

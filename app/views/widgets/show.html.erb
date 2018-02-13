@@ -11,12 +11,67 @@
 <div class="store-details-container">
   <div class="store-details-pane">
     <div class="store-details-title">
+      <div class="widget-logo-bg">
+        <% if !@widget.logo_url.nil? && @widget.logo_url != "" %>
+          <%= image_tag(@widget.logo_url, alt: @widget.widget_name) %>
+        <% else %>
+          <p>X</p>
+        <% end %>
+      </div>
+
       <h2><%= @widget.widget_name %></h2>
+
+      <p class="widget-author">
+        By
+        <% if !@widget_author.full_name.nil? && @widget_author.full_name != "" %>
+          <%= @widget_author.full_name %>
+        <% elsif !@widget_author.user_name.nil? && @widget_author.user_name != "" %>
+          <%= @widget_author.user_name %>
+        <% elsif !@widget_author.email.nil? && @widget_author.email != "" %>
+          <%= @widget_author.email %>
+        <% else %>
+          Anonymous
+        <% end %>
+      </p>
+
+      <p class="widget-rating">
+        <% if (avg_rating = @widget.reviews.all.average(:rating)).nil? %>
+          &#9734; No ratings
+        <% else %>
+          <%= raw("&#9733;" * avg_rating.to_f.round + "&#9734;" * (5 - avg_rating.to_f.round)) %> <%= avg_rating.to_f.round(1) %>
+        <% end %>
+      </p>
+    </div>
+
+    <% if @widget.screenshots.nil? || @widget.screenshots.size == 0 %>
+      <div class="no-screenshots">
+        <p>No screenshots available</p>
+      </div>
+    <% else %>
+      <div class="screenshot-gallery">
+        <% @widget.screenshots.each do |screenshot| %>
+          <%= image_tag screenshot.screenshot_url, alt: @widget.widget_name %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="widget-info">
+      <p>
+        <%= @widget.widget_installs.count %>
+        <%= @widget.widget_installs.count == 1 ? "install" : "installs" %>
+      </p>
+
+      <p><%= @widget.description %></p>
     </div>
   </div>
 </div>
 
-
+<script>
+  // Activate gallery plugin
+    document.addEventListener('turbolinks:load', function() {
+        $('.screenshot-gallery').gallery();
+    });
+</script>
 
 <!--
 <p id="notice"><%= notice %></p>
