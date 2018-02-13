@@ -14,10 +14,27 @@
 
     <% if !@widgets.nil? && @widgets.size != 0 %>
       <% @widgets.each do |widget| %>
-        <% if !widget.logo_url.nil? && widget.logo_url != "" %>
-          <%= link_to raw("<figure><div class='widget-logo-bg'>") + image_tag(widget.logo_url, alt: widget.widget_name) + raw("</div><figcaption>") + widget.widget_name + raw("</figcaption></figure>"), widget %>
-        <% else %>
-          <%= link_to raw("<figure><div class='widget-logo-bg'><p>X</p></div><figcaption>") + widget.widget_name + raw("</figcaption></figure>"), widget %>
+        <%= link_to widget do %>
+          <figure>
+            <div class="widget-logo-bg">
+              <% if !widget.logo_url.nil? && widget.logo_url != "" %>
+                <%= image_tag(widget.logo_url, alt: widget.widget_name) %>
+              <% else %>
+                <p>X</p>
+              <% end %>
+            </div>
+            <figcaption>
+              <span class="widget-title"><%= widget.widget_name %></span>
+
+              <span class="widget-rating">
+                <% if (avg_rating = widget.reviews.all.average(:rating)).nil? %>
+                  &#9734;
+                <% else %>
+                  <%= avg_rating.round %> &#9733;
+                <% end %>
+              </span>
+            </figcaption>
+          </figure>
         <% end %>
       <% end %>
     <% else %>
