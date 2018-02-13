@@ -3,4 +3,5 @@ class Widget < ApplicationRecord
   has_many :widget_codes
   has_many :widget_installs
   has_many :widget_instances
+  has_many :reviews
 end

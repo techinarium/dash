@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :widget_instances
   resources :widget_installs
   resources :widget_codes
