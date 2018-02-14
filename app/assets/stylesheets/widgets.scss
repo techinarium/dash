@@ -92,8 +92,10 @@
   }
 
   .store-details-title {
+    position: relative;
     clear: both;
     height: 140px;
+    margin-top: 2em;
 
     .widget-logo-bg {
       float: left;
@@ -127,19 +129,38 @@
   }
 
   .screenshot-gallery {
+    max-width: 600px;
+    margin: 0 auto;
+
+    .controls {
+      .prev-button, .next-button {
+        padding: 5px;
+      }
+    }
   }
 
   .no-screenshots {
+    max-width: 600px;
     width: 100%;
-    height: 400px;
-    line-height: 400px;
+    height: 600px;
+    line-height: 600px;
     text-align: center;
     background-color: #eee;
-    border-radius: 5px;
+    margin: 0 auto;
   }
 
   .widget-info p {
     margin: 2em 1em;
+  }
+
+  p a {
+    text-decoration: none;
+    color: var(--text-color);
+
+    &:hover {
+      text-decoration: underline;
+      color: var(--accent-color);
+    }
   }
 }
 
@@ -159,11 +180,20 @@
   color: var(--text-color);
 }
 
-.store-button {
+.store-install-button, .store-uninstall-button {
+  position: absolute;
+  top: 0;
+  right: 0;
   background-color: var(--accent-color);
   color: var(--bg-color);
   padding: 0.4em 1.2em;
   font-size: 1.1em;
-  margin-top: 0.75em;
+  margin-top: 0;
   cursor: pointer;
+  border: 0;
+  outline: 0;
+}
+
+.store-uninstall-button {
+  background-color: #ff0000;
 }
