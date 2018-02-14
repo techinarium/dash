@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
+  resources :reviews
   resources :widget_instances
   resources :widget_installs
   resources :widget_codes
   resources :screenshots
-  resources :widgets
+
+  resources :widgets do
+    resources :widget_installs
+  end
 
   devise_for :users
 

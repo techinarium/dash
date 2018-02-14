@@ -77,15 +77,15 @@
         Go install some widgets from the <%= link_to "Store", widgets_path %>
       <% else %>
 
-        <% @installed_widgets.each do |widget| %>
-          <div class="widget-list-item" data-widget-id="<%= widget.id %>">
+        <% @installed_widgets.each do |widget_install| %>
+          <div class="widget-list-item" data-widget-id="<%= widget_install.widget_id %>">
             <div class="widget-logo">
               <!-- Logo image will go here. For now, just a gray box -->
             </div>
 
             <div id="widget-info">
-              <h4><%= widget.widget_name %></h4>
-              <p><%= widget.description %></p>
+              <h4><%= widget_install.widget.widget_name %></h4>
+              <p><%= widget_install.widget.description %></p>
               <a href="#">Add +</a>
               <a href="#" data-widget-action="uninstall">Uninstall</a>
               <a href="#" data-widget-action="storePage">Store Page</a>

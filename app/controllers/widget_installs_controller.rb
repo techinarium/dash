@@ -1,6 +1,7 @@
 class WidgetInstallsController < ApplicationController
   before_action :confirm_login
-  before_action :set_widget_install, only: [:show, :edit, :update, :destroy]
+  before_action :set_widget_install, only: [:destroy]
+  # before_action :set_widget_install, only: [:show, :edit, :update, :destroy]
 
   # GET /widget_installs
   # GET /widget_installs.json
@@ -25,14 +26,18 @@ class WidgetInstallsController < ApplicationController
   # POST /widget_installs
   # POST /widget_installs.json
   def create
-    @widget_install = WidgetInstall.new(widget_install_params)
+    @widget = Widget.find(params[:widget_id])
+    widget_install_save = @widget.widget_installs.create(user_id: current_user.id,
+                                                         widget_id: :widget_id)
 
     respond_to do |format|
-      if @widget_install.save
-        format.html { redirect_to @widget_install, notice: 'Widget install was successfully created.' }
+      if widget_install_save
+        # format.html { redirect_to @widget_install, notice: 'Widget install was successfully created.' }
+        format.html { redirect_to widget_path(@widget), notice: 'Widget was successfully installed.' }
         format.json { render :show, status: :created, location: @widget_install }
       else
-        format.html { render :new }
+        # format.html { render :new }
+        format.html { redirect_to widget_path(@widget), error: 'An issue occurred. Widget was not installed.' }
         format.json { render json: @widget_install.errors, status: :unprocessable_entity }
       end
     end
@@ -55,9 +60,12 @@ class WidgetInstallsController < ApplicationController
   # DELETE /widget_installs/1
   # DELETE /widget_installs/1.json
   def destroy
+    @widget = Widget.find(@widget_install.widget_id)
+    @widget_install.widget.widget_instances.where(user_id: :user_id).destroy_all
     @widget_install.destroy
     respond_to do |format|
-      format.html { redirect_to widget_installs_url, notice: 'Widget install was successfully destroyed.' }
+      # format.html { redirect_to widget_installs_url, notice: 'Widget install was successfully destroyed.' }
+      format.html { redirect_to widget_path(@widget), notice: 'Widget was successfully uninstalled.' }
       format.json { head :no_content }
     end
   end

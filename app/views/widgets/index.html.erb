@@ -12,8 +12,32 @@
   <div class="store-pane">
     <h1>Widget Store</h1>
 
-    <% @widgets.each do |widget| %>
-      <%= link_to raw("<figure>") + image_tag(widget.logo_url, alt: widget.widget_name) + raw("<figcaption>") + widget.widget_name + raw("</figcaption></figure>"), widget %>
+    <% if !@widgets.nil? && @widgets.size != 0 %>
+      <% @widgets.each do |widget| %>
+        <%= link_to widget do %>
+          <figure>
+            <div class="widget-logo-bg">
+              <% if !widget.logo_url.nil? && widget.logo_url != "" %>
+                <%= image_tag widget.logo_url, alt: widget.widget_name %>
+              <% else %>
+                <p>X</p>
+              <% end %>
+            </div>
+            <figcaption>
+              <span class="widget-title"><%= widget.widget_name %></span>
+              <span class="widget-rating">
+                <% if (avg_rating = widget.reviews.all.average(:rating)).nil? %>
+                  &#9734;
+                <% else %>
+                  <%= avg_rating.round %> &#9733;
+                <% end %>
+              </span>
+            </figcaption>
+          </figure>
+        <% end %>
+      <% end %>
+    <% else %>
+      <p>No widgets found</p>
     <% end %>
   </div>
 </div>

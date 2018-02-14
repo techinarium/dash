@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbolinks:load', function() {
 	const e = {}
 	const el = {
 		container: document.getElementById('widget-editor-container'),
