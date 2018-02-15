@@ -79,14 +79,13 @@
       <p><%= @widget.description %></p>
     </div>
 
-    <hr>
-    <h2 id="reviews-h2">Reviews</h2>
-    <hr>
+    <!-- REVIEWS -->
+    <hr><h2 id="reviews-h2">Reviews</h2><hr>
+
+    <!-- list of reviews -->
     <section id="reviews">
       <% @widget.reviews.each do |review| %>
-
         <div class="review">
-          <div class="review-header">
             <h4>Reviewer's Name</h4>
 
             <p id="review-rating">
@@ -96,14 +95,14 @@
             <p id="review-date"><%= review.created_at.strftime("%b %d, %Y") %></p>
 
             <p><%= review.review_text %></p>
-          </div>
         </div>
       <% end %>
-
     </section>
 
+    <!-- REVIEW FORM -->
     <div id="review-form">
       <h3>Leave A Review</h3>
+
       <form>
         <label for="rating">Rating</label>
         <select id="rating">
@@ -121,7 +120,7 @@
       </form>
     </div>
 
-    <p><%= link_to ('&laquo; Back').html_safe, widgets_path %></p>
+    <p style="text-align: center"><%= link_to ('&laquo; Back').html_safe, widgets_path %></p>
   </div>
 </div>
 
