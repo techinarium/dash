@@ -36,7 +36,7 @@ CONTENT
   widget = Widget.create(
                      widget_name: "Widget #{i}",
                      logo_url: "https://picsum.photos/100/100/?image=#{rand(50)}",
-                     description: "Description goes here",
+                     description: "Description goes here.",
                      user_id: widget_author_id
   )
 
@@ -56,5 +56,16 @@ CONTENT
       )
       widget.save!
     end
+  end
+
+  #create a few fake reviews for each widget
+  rand(0..5).times do | r |
+    review = Review.create(
+        widget_id: widget.id,
+        review_text: Faker::Lorem.paragraph,
+        user_id: widget_author_id,
+        rating: rand(1..5)
+    )
+    review.save!
   end
 end

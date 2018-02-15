@@ -1,3 +1,84 @@
 // Place all the styles related to the Reviews controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+#review-link {
+  color: var(--accent-color);
+  font-size: 12px;
+}
+
+#reviews-h2 {
+  margin: 20px 0;
+  text-align: center;
+}
+
+#reviews, #review-form {
+  padding: 15px;
+}
+
+.review {
+  margin-bottom: 20px;
+  padding-bottom: 20px;
+  border-bottom: 1px solid #eeeeee;
+
+  h4 {
+    width: 50%;
+    display: inline-block;
+    line-height: 100%;
+  }
+
+  #review-rating {
+    width: 49%;
+    display: inline-block;
+    text-align: right;
+    font-size: 20px;
+  }
+}
+
+#review-date {
+  font-size: 12px;
+  font-style: italic;
+  color: #717171;
+  margin-bottom: 8px;
+}
+
+#review-textarea {
+  display: block;
+  width: 100%;
+  height: 150px;
+  margin-bottom: 18px;
+}
+
+#review-form {
+  label {
+    display: block;
+    color: #717171;
+    margin-bottom: 6px;
+  }
+
+  h3 {
+    text-align: center;
+  }
+
+  textarea {
+    padding: 12px;
+  }
+
+  select {
+    width: 60px;
+    margin-bottom: 20px;
+    padding: 8px;
+    font-family: inherit;
+  }
+
+  button[type=submit] {
+    display: block;
+    width: 30%;
+    padding: 12px 8px;
+    background-color: var(--accent-color);
+    color: white;
+    border: none;
+    font-size: 18px;
+    font-family: inherit;
+    margin: 0 auto;
+  }
+}
