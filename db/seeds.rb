@@ -59,7 +59,7 @@ CONTENT
   end
 
   #create a few fake reviews for each widget
-  rand(1..5).times do | r |
+  rand(0..5).times do | r |
     review = Review.create(
         widget_id: widget.id,
         review_text: Faker::Lorem.paragraph,

@@ -84,18 +84,22 @@
 
     <!-- list of reviews -->
     <section id="reviews">
-      <% @widget.reviews.each do |review| %>
-        <div class="review">
-            <h4>Reviewer's Name</h4>
+      <% if @widget.reviews.count != 0 %>
+        <% @widget.reviews.each do |review| %>
+          <div class="review">
+              <h4>Reviewer's Name</h4>
 
-            <p id="review-rating">
-              <%= raw("&#9733;" * review.rating.to_f.round + "&#9734;" * (5 - review.rating.to_f.round)) %>
-            </p>
+              <p id="review-rating">
+                <%= raw("&#9733;" * review.rating.to_f.round + "&#9734;" * (5 - review.rating.to_f.round)) %>
+              </p>
 
-            <p id="review-date"><%= review.created_at.strftime("%b %d, %Y") %></p>
+              <p id="review-date"><%= review.created_at.strftime("%b %d, %Y") %></p>
 
-            <p><%= review.review_text %></p>
-        </div>
+              <p><%= review.review_text %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p style="text-align: center">No one has reviewed this widget yet.</p>
       <% end %>
     </section>
 
