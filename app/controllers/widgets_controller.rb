@@ -22,7 +22,8 @@ class WidgetsController < ApplicationController
       format.json do
         render json: {
           widget: @widget,
-          codes: @widget_codes.reverse
+          codes: @widget_codes.reverse,
+          instances: @widget.widget_instances.where(user_id: current_user.id)
         }
       end
       format.html { widgets_path(@widget) }
