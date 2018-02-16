@@ -1,0 +1,50 @@
+// Place all the styles related to the Admin controller here.
+// They will automatically be included in application.css.
+// You can use Sass (SCSS) here: http://sass-lang.com/
+.ban-page {
+  max-width: 500px;
+  margin: 0 auto;
+
+  h1 {
+    margin-bottom: 15px;
+  }
+}
+
+.save-button {
+  background-color: var(--accent-color);
+  color: var(--bg-color);
+  padding: 0.2em 1.2em;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+  border: 0;
+  outline: 0;
+}
+
+.ban-table {
+  width: 100%;
+
+  th {
+    word-wrap: nowrap;
+  }
+
+  tr:nth-child(even) {
+    background-color: #eee;
+  }
+
+  td:not(:nth-child(1)) {
+    text-align: center;
+  }
+
+  a {
+    color: var(--accent-color);
+    text-decoration: none;
+  }
+
+  .banned-color {
+    color: #F41D12;
+  }
+
+  .unbanned-color {
+    color: #23C828;
+  }
+}
