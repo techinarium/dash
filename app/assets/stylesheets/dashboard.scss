@@ -17,12 +17,11 @@ main {
   padding-left: 14px;
 }
 
-.temp-widget {
-  margin: 5px;
-  display: inline-block;
-  background-color: #eee;
-  width: 100px;
-  height: 100px;
+.widget-root {
+  width: 150px;
+  height: 150px;
+  margin: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
 }
 
 .hello {

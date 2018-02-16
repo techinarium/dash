@@ -62,3 +62,6 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 gem "jquery-rails", "~> 4.3"
 
 gem 'faker'
+
+# Using webpack to bundle all the dashboard stuff
+gem 'webpacker', '~> 3.2'

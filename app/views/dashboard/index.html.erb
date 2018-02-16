@@ -28,12 +28,7 @@
 <!-- end navigation -->
 
 <div class="dashboard-content">
-  <main>
-    <!-- TEMPORARY WIDGET PLACEHOLDERS FOR NOW -->
-    <% 60.times do %>
-      <div class="temp-widget"></div>
-    <% end %>
-  </main>
+  <main id="dashboard-widgets"></main>
 
 
   <!-- WIDGET LIST -->
@@ -58,7 +53,7 @@
             <div id="widget-info">
               <h4><%= widget.widget_name %></h4>
               <p><%= widget.description %></p>
-              <a href="#">Add +</a>
+              <a href="#" data-widget-action="add">Add +</a>
               <a href="#" data-widget-action="edit">Edit</a>
               <a href="#" data-widget-action="delete" class="widget-delete-button">Delete</a>
               <a href="#" data-widget-action="storePage">Store Page</a>
