@@ -1,11 +1,15 @@
 {
   "name": "dash",
   "private": true,
-  "dependencies": {},
+  "dependencies": {
+    "@rails/webpacker": "^3.2.2",
+    "@techinarium/widget-api": "git+https://github.com/techinarium/widget-api.git"
+  },
   "devDependencies": {
-    "babel-preset-env": "^1.6.1"
+    "babel-preset-env": "^1.6.1",
+    "webpack-dev-server": "^2.11.1"
   },
   "engines": {
-    "node": "9.5.0"
+    "node": "9.2.1"
   }
 }

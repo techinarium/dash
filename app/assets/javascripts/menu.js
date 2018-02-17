@@ -44,6 +44,7 @@ document.addEventListener('turbolinks:load', function(){
 
     // Map functions to "data-widget-action" values
     var widgetActions = {
+      add: onAddClick,
       edit: onEditClick,
       create: onCreateClick,
       delete: onDeleteClick,
@@ -68,6 +69,16 @@ document.addEventListener('turbolinks:load', function(){
           </div>
         </div>
       `);
+    }
+
+    function onAddClick(e) {
+      e.preventDefault();
+
+      var id = $(this).closest(".widget-list-item").data("widget-id");
+
+      if (Overlord) {
+        Overlord.loadWidget(id);
+      }
     }
 
     // Open widget editor when 'Edit' buttons are clicked
