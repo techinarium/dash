@@ -23,7 +23,7 @@ export default function(state, events) {
           e.preventDefault()
           events.emit('destroyRequested', state.instanceID)
         }
-      }, '×')
+      }, 'X')
     ])
     
     root.appendChild(toolbar)
