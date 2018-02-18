@@ -1,21 +1,135 @@
-//NAVIGATION/MENU
-nav {
-  padding: 18px;
+/*=========================*\
+||    Navigation / Menu    ||
+\*=========================*/
+
+#dash-container {
   display: flex;
-  justify-content: flex-end;
+  flex-flow: column nowrap;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+nav {
+//  padding: 18px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  
+  padding: 1em;
+}
+
+.menu {
+  display: inline-block;
+
+  h4 {
+    display: inline-block;
+    margin-right: 20px;
+  }
+
+  h4:last-of-type{
+    margin-right: 0;
+  }
+
+  h4 a {
+    text-decoration: none;
+    color: black;
+  }
+
+  h4 a:hover {
+    color: var(--accent-color)
+  }
 }
 
 .dashboard-content {
   display: flex;
-  align-items: stretch;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  
+  flex: 1 1 100%;
 }
 
-main {
-  display: block;
-  width: 77%;
-  margin: 0 auto;
-  padding-left: 14px;
+#dashboard-widgets {
+  padding: 0.5em;
 }
+
+/*========================*\
+||   Widget List / Menu   ||
+\*========================*/
+
+#widget-list {
+  display: inline-block;
+  width: 100%;
+  max-width: 320px;
+  margin-right: 1em;
+  display: flex;
+  flex-flow: column nowrap;
+}
+
+.widget-logo {
+  display: inline-block;
+  height: 60px;
+  width: 60px;
+  background-color: #d0d0d0;
+  margin-right: 8px;
+}
+
+.widget-info {
+  display: inline-block;
+  margin-bottom: 20px;
+
+  a {
+    margin-top: -5px;
+    color: var(--accent-color);
+    text-decoration: none;
+    font-size: 12px;
+    display: inline-block;
+    margin-right: 8px;
+  }
+}
+
+.widget-list-tabs {
+  display: flex;
+}
+
+.widget-list-tab {
+  flex: 1 1 50%;
+  color: black;
+  display: inline-block;
+  text-align: center;
+  padding: 12px 6px;
+  text-decoration: none;
+  border-bottom: 2px solid transparent;
+  
+  &:hover {
+    color: var(--accent-color);
+  }
+}
+
+.active-tab {
+  border-bottom: 2px solid black;
+}
+
+#my-widgets, #installed-widgets {
+  margin-top: 24px;
+}
+
+#create-widget-btn {
+  display: block;
+  background-color: var(--accent-color);
+  color: white;
+  font-size: 14px;
+  padding: 12px;
+  text-align: center;
+  text-decoration: none;
+  margin-top: 100px;
+}
+
+/*=================*\
+||     Widgets     ||
+\*=================*/
 
 .widget-root {
   position: relative;
@@ -55,102 +169,4 @@ main {
   height: 20px;
   text-align: center;
   line-height: 20px;
-}
-
-.hello {
-  width: 49%;
-  display: inline-block;
-  line-height: 50px;
-  vertical-align: middle;
-}
-
-.menu {
-  width: 49%;
-  display: inline-block;
-  text-align: right;
-  vertical-align: middle;
-  line-height: 50px;
-
-  h4 {
-    display: inline-block;
-    margin-right: 20px;
-  }
-
-  h4:last-of-type{
-    margin-right: 0;
-  }
-
-  h4 a {
-    text-decoration: none;
-    color: black;
-  }
-
-  h4 a:hover {
-    color: var(--accent-color)
-  }
-}
-
-//WIDGET LIST
-#widget-list {
-  display: inline-block;
-  width: 20%;
-  min-width: 250px;
-  vertical-align: top;
-  visibility: collapse;
-  margin-right: 1em;
-
-  #create-widget-btn {
-    display: block;
-    background-color: var(--accent-color);
-    color: white;
-    font-size: 14px;
-    padding: 12px;
-    text-align: center;
-    text-decoration: none;
-    margin-top: 100px;
-  }
-}
-
-.widget-logo {
-  display: inline-block;
-  height: 60px;
-  width: 60px;
-  background-color: #d0d0d0;
-  margin-right: 8px;
-}
-
-#widget-info {
-  display: inline-block;
-  margin-bottom: 20px;
-
-  a {
-    margin-top: -5px;
-    color: var(--accent-color);
-    text-decoration: none;
-    font-size: 12px;
-    display: inline-block;
-    margin-right: 8px;
-  }
-}
-
-.widget-list-tab {
-  color: black;
-  display: inline-block;
-  width: 49%;
-  text-align: center;
-  padding: 6px;
-  text-decoration: none;
-  border-bottom: 2px solid transparent;
-}
-
-.widget-list-tab:hover {
-  color: var(--accent-color);
-}
-
-.active-tab {
-  border-bottom: 2px solid black;
-}
-
-#my-widgets, #installed-widgets {
-  margin-top: 12px;
 }
