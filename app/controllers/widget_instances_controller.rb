@@ -5,7 +5,8 @@ class WidgetInstancesController < ApplicationController
   # GET /widget_instances
   # GET /widget_instances.json
   def index
-    @widget_instances = WidgetInstance.all
+    # List all widget instances, but only for the current user.
+    @widget_instances = WidgetInstance.where(user_id: current_user.id)
   end
 
   # GET /widget_instances/1
@@ -25,7 +26,13 @@ class WidgetInstancesController < ApplicationController
   # POST /widget_instances
   # POST /widget_instances.json
   def create
-    @widget_instance = WidgetInstance.new(widget_instance_params)
+    parameters = {
+      user_id: current_user.id,
+      widget_id: widget_instance_params['widget_id'],
+      data: widget_instance_params['data'] || {}
+    }
+    
+    @widget_instance = WidgetInstance.new(parameters)
 
     respond_to do |format|
       if @widget_instance.save
@@ -41,8 +48,13 @@ class WidgetInstancesController < ApplicationController
   # PATCH/PUT /widget_instances/1
   # PATCH/PUT /widget_instances/1.json
   def update
+    parameters = {
+      user_id: current_user.id,
+      **widget_instance_params
+    }
+    
     respond_to do |format|
-      if @widget_instance.update(widget_instance_params)
+      if @widget_instance.update(parameters)
         format.html { redirect_to @widget_instance, notice: 'Widget instance was successfully updated.' }
         format.json { render :show, status: :ok, location: @widget_instance }
       else
@@ -70,6 +82,6 @@ class WidgetInstancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def widget_instance_params
-      params.require(:widget_instance).permit(:user_id, :widget_id, :data)
+      params.require(:widget_instance).permit(:widget_id, :data)
     end
 end

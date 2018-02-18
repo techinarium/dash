@@ -14,10 +14,8 @@ export default function() {
     layouts: []
   }
 
-  const render = _render(state)
   const events = _events(state)
-  // Rollup doesn't like the word 'data' alone as a function name,
-  // so these all have an underscore prepended.
+  const render = _render(state, events)
   const data = _data(state, events)
   const element = _element(state, events)
 
@@ -36,7 +34,11 @@ export default function() {
       on(event, func) {
         events.on(event, func)
       },
+      once(event, func) {
+        events.once(event, func)
+      },
       init(root) {
+        data._load()
         state.size = '2x2'
         render(root)
       },
@@ -46,7 +48,10 @@ export default function() {
       get dom() {
         return state.dom
       },
-      data,
+      data: {
+        get: data.get,
+        set: data.set,
+      },
       element,
       layout,
       setLayout,

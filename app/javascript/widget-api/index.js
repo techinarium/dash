@@ -53,6 +53,8 @@ export default (function() {
     setupFunction.call(null, api.public)
 
     events.emit('widgetCreated', api.private)
+    
+    return api.private
   }
 
   return {

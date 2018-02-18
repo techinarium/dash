@@ -18,10 +18,43 @@ main {
 }
 
 .widget-root {
+  position: relative;
   width: 150px;
   height: 150px;
   margin: 10px;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  
+  .widget-toolbar {
+    opacity: 0;
+    pointer-events: none;
+  }
+  
+  &:hover {
+    .widget-toolbar {
+      opacity: 1;
+      pointer-events: all;
+    }
+  }
+}
+
+.widget-toolbar {
+  z-index: 2;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  left: 0;
+  height: 20px;
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: opacity 200ms;
+//  border: 1px solid orange;
+}
+
+.widget-toolbar-button {
+  display: block;
+  width: 20px;
+  height: 20px;
+  text-align: center;
+  line-height: 20px;
 }
 
 .hello {
