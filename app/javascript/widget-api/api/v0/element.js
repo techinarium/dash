@@ -3,7 +3,7 @@ export default function(state) {
     for (const prop in styles) {
       const name = prop.replace(/([a-z\d])([A-Z])/, '$1-$2').toLowerCase()
 
-      console.log('style: ', name, styles[prop])
+      // console.log('style: ', name, styles[prop])
 
       el.style[name] = styles[prop]
     }
@@ -14,9 +14,23 @@ export default function(state) {
 
     const eventName = name.slice(2).toLowerCase()
 
-    console.log(eventName)
+    // console.log(eventName)
 
     el.addEventListener(eventName, handler)
+  }
+  
+  function _attachChildren(el, children = []) {
+    children.forEach(child => {
+      if (typeof child === 'string') {
+        child = text(child)
+      }
+      
+      try {
+        el.appendChild(child)
+      } catch (err) {
+        console.warn('failed to attach child', child, 'to parent', el, err)
+      }
+    })
   }
 
   function _applyAttribute(el, name, value) {
@@ -43,47 +57,52 @@ export default function(state) {
     }
   }
 
-  function _el(tag, props) {
+  function _el(tag, props, children) {
+    // console.log('creating element', tag, props, children)
+    
     // Create DOM nodes.
     const el = document.createElement(tag)
     if (props) {
-      _applyProps(el, props)
+      if (Array.isArray(props) && !children) {
+        // Assume children was passed as the second prop.
+        children = props
+        props = null
+      } else if (typeof props === 'object') {
+        _applyProps(el, props)
+      }
     }
+    if (children && !Array.isArray(children)) {
+      children = [children]
+    }
+    _attachChildren(el, children)
     return el
   }
 
-  function _base(props) {
-    // Handle all the common element setup
-
-  }
-
-  function textbox(props, children) {
-    console.log('Instantiating a textbox element')
-    const el = _el('textarea')
+  function textbox(props, value) {
+    const el = _el('textarea', props)
 
     _applyStyles(el, {
       position: 'relative',
       border: 0,
       resize: 'none',
     })
-
-    _applyProps(el, props)
-
-    if (typeof children === 'string') {
-      el.value = children
+    
+    if (typeof value === 'string') {
+      el.value = value
     }
 
     return el
   }
 
   function text(value) {
-    console.log('Instantiating a text element')
+    // console.log('Instantiating a text element')
 
     return document.createTextNode(value)
   }
 
   return {
     text,
-    textbox
+    textbox,
+    RAW: _el
   }
 }

@@ -19,12 +19,12 @@ document.addEventListener('turbolinks:load', function(){
             $("main").css("display", "block");
         }
     });
-
+    
     //when "My Widgets" link is clicked, show My Widgets & hide Installed Widgets
     $("#my-widgets-tab").click(function(e){
         e.preventDefault();
-        $("#installed-widgets-tab").toggleClass("active-tab");
-        $("#my-widgets-tab").toggleClass("active-tab");
+        $("#installed-widgets-tab").removeClass("active-tab");
+        $("#my-widgets-tab").addClass("active-tab");
         $("#installed-widgets").hide();
         $("#my-widgets").fadeIn();
     });
@@ -32,8 +32,8 @@ document.addEventListener('turbolinks:load', function(){
     //when "Installed" link is clicked, show Installed widgets & hide My Widgets
     $("#installed-widgets-tab").click(function(e){
         e.preventDefault();
-        $("#my-widgets-tab").toggleClass("active-tab");
-        $("#installed-widgets-tab").toggleClass("active-tab");
+        $("#my-widgets-tab").removeClass("active-tab");
+        $("#installed-widgets-tab").addClass("active-tab");
         $("#my-widgets").hide();
         $("#installed-widgets").fadeIn();
     });
@@ -76,8 +76,9 @@ document.addEventListener('turbolinks:load', function(){
 
       var id = $(this).closest(".widget-list-item").data("widget-id");
 
-      if (Overlord) {
-        Overlord.loadWidget(id);
+	    // DashControl is the Dash 'manager' object. It's defined over at app/javascript/packs/dashboard.js
+      if (DashControl) {
+        DashControl.createWidgetInstance(id);
       }
     }
 
@@ -101,7 +102,7 @@ document.addEventListener('turbolinks:load', function(){
       e.preventDefault();
 
       var widgetName = prompt("What do you want to call your widget?", "My Awesome Widget");
-      var widgetDescription = prompt("Enter a short description of what your widget will do");
+      var widgetDescription = prompt("Enter a short description of what your widget will do", "Does awesome stuff.");
 
       $.ajax({
         url: "/widgets.json",
@@ -110,8 +111,7 @@ document.addEventListener('turbolinks:load', function(){
           widget: {
             widget_name: widgetName,
             description: widgetDescription,
-          },
-          // authenticity_token: $('[name="csrf-token"]')[0].content
+          }
         },
         complete: function(response) {
           const widget = response.responseJSON;

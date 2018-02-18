@@ -3,15 +3,16 @@ export default function(state) {
   if (!state.data) state.data = {}
 
   function _save() {
-    localStorage.setItem(`widget_${state.id}_data`, JSON.stringify(state.data))
+    localStorage.setItem(`widget_instance_${state.instanceID}_data`, JSON.stringify(state.data))
+    
+    console.log('saved', state.data)
   }
 
   function _load() {
-    state.data = JSON.parse(localStorage.getItem(`widget_${state.id}_data`) || '{}')
+    state.data = JSON.parse(localStorage.getItem(`widget_instance_${state.instanceID}_data`) || '{}')
+    
+    console.log('loaded', state.data)
   }
-
-  // Try to fetch widget data on initialization.
-  _load()
 
   function get(property) {
     if (Array.isArray(property)) {
@@ -50,5 +51,5 @@ export default function(state) {
     _save() // Save after every set.
   }
 
-  return { get, set }
+  return { get, set, _save, _load }
 }
