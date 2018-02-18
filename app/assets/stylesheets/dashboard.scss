@@ -114,7 +114,6 @@ nav {
 
 #my-widgets, #installed-widgets {
   margin-top: 24px;
-<<<<<<< HEAD
 }
 
 #create-widget-btn {
@@ -128,9 +127,6 @@ nav {
   margin-top: 100px;
 }
 
-=======
-}
-
 #create-widget-btn {
   display: block;
   background-color: var(--accent-color);
@@ -142,7 +138,6 @@ nav {
   margin-top: 100px;
 }
 
->>>>>>> 2e9c394272e47838fda6e313724ba168bb986d76
 /*=================*\
 ||     Widgets     ||
 \*=================*/
@@ -156,51 +151,34 @@ nav {
   
   .widget-toolbar {
     opacity: 0;
-<<<<<<< HEAD
     transform: translateY(10px);
-=======
->>>>>>> 2e9c394272e47838fda6e313724ba168bb986d76
     pointer-events: none;
   }
   
   &:hover {
     .widget-toolbar {
       opacity: 1;
-<<<<<<< HEAD
       transform: translateY(0px);
-=======
->>>>>>> 2e9c394272e47838fda6e313724ba168bb986d76
       pointer-events: all;
     }
   }
 }
 
 .widget-toolbar {
-<<<<<<< HEAD
   display: flex;
   justify-content: flex-end;
-=======
->>>>>>> 2e9c394272e47838fda6e313724ba168bb986d76
   z-index: 2;
   position: absolute;
   bottom: 0;
   right: 0;
   left: 0;
-<<<<<<< HEAD
   transform: translate(0px);
   transition: opacity 200ms,
               transform 100ms;
-=======
-  height: 20px;
-  background-color: rgba(0, 0, 0, 0.2);
-  transition: opacity 200ms;
-//  border: 1px solid orange;
->>>>>>> 2e9c394272e47838fda6e313724ba168bb986d76
 }
 
 .widget-toolbar-button {
   display: block;
-<<<<<<< HEAD
   text-align: center;
   line-height: 20px;
   width: 20px;
@@ -215,10 +193,4 @@ nav {
     background-color: var(--accent-color);
     color: #fff;
   }
-=======
-  width: 20px;
-  height: 20px;
-  text-align: center;
-  line-height: 20px;
->>>>>>> 2e9c394272e47838fda6e313724ba168bb986d76
 }
