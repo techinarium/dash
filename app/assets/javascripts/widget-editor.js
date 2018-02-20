@@ -10,7 +10,13 @@ document.addEventListener('turbolinks:load', function() {
 	let currentCode;
 
 	const editor = CodeMirror.fromTextArea(el.textarea, {
-		mode: 'javascript'
+		mode: 'javascript',
+    matchBrackets: true,
+    styleActiveLine: true,
+    closeBrackets: `()[]{}''""`,
+    lineNumbers: true,
+    tabSize: 2,
+    smartIndent: true,
 	})
 
 	// Wire up toolbar actions.
