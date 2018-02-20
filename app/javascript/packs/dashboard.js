@@ -10,7 +10,7 @@
 import API from '../widget-api'
 import Layout from '../widget-layout'
 
-$(() => {
+$(document).on('turbolinks:load', () => {
   const { on } = API.private
   const Dash = API.public
   let widgets = []
