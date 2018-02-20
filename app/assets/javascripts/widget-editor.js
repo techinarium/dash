@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('turbolinks:load', function() {
 	const e = {}
 	const el = {
 		container: document.getElementById('widget-editor-container'),
@@ -10,7 +10,13 @@ document.addEventListener('DOMContentLoaded', function() {
 	let currentCode;
 
 	const editor = CodeMirror.fromTextArea(el.textarea, {
-		mode: 'javascript'
+		mode: 'javascript',
+    matchBrackets: true,
+    styleActiveLine: true,
+    closeBrackets: `()[]{}''""`,
+    lineNumbers: true,
+    tabSize: 2,
+    smartIndent: true,
 	})
 
 	// Wire up toolbar actions.

@@ -16,12 +16,14 @@ class WidgetsController < ApplicationController
   def show
     @widget = Widget.find(params[:id])
     @widget_codes = @widget.widget_codes
+    @widget_author = User.find(@widget.user_id)
 
     respond_to do |format|
       format.json do
         render json: {
           widget: @widget,
-          codes: @widget_codes.reverse
+          codes: @widget_codes.reverse,
+          instances: @widget.widget_instances.where(user_id: current_user.id)
         }
       end
       format.html { widgets_path(@widget) }

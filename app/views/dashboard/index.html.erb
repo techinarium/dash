@@ -4,101 +4,99 @@
   </p>
 <% end %>
 
-<!-- start navigation -->
-<nav>
-  <div class="hello">
-    <% if user_signed_in? %>
-      <h4>Hello,
-        <!-- show full name if defined. Else, show username. Else, show email address. -->
-        <% if !current_user.full_name.nil? && current_user.full_name != "" %>
-          <%= current_user.full_name %>.
-        <% elsif !current_user.user_name.nil? && current_user.user_name != "" %>
-          <%= current_user.user_name %>.
-        <% elsif !current_user.email.nil? && current_user.email != "" %>
-          <%= current_user.email %>.
+<div id="dash-container">
+  <!-- start navigation -->
+  <nav>
+    <div class="hello">
+      <% if user_signed_in? %>
+        <h4>Hello,
+          <!-- show full name if defined. Else, show username. Else, show email address. -->
+          <% if !current_user.full_name.nil? && current_user.full_name != "" %>
+            <%= current_user.full_name %>.
+          <% elsif !current_user.user_name.nil? && current_user.user_name != "" %>
+            <%= current_user.user_name %>.
+          <% elsif !current_user.email.nil? && current_user.email != "" %>
+            <%= current_user.email %>.
+          <% end %>
+
+          It's currently <span id="hello-clock"><%= Time.now.strftime("%I:%M %p")%></span> on <%= Time.now.strftime("%A") %>.
+        </h4>
+      <% end %>
+    </div>
+
+    <%= render 'shared/menu' %>
+  </nav>
+  <!-- end navigation -->
+
+  <div class="dashboard-content">
+    <main id="dashboard-widgets"></main>
+
+    <!-- WIDGET LIST -->
+    <section id="widget-list">
+      <div class="widget-list-tabs">
+        <a href="" class="widget-list-tab active-tab" id="my-widgets-tab">My Widgets</a>
+        <a href="" class="widget-list-tab" id="installed-widgets-tab">Installed</a>
+      </div>
+
+      <!-- "MY WIDGETS" -->
+      <div id="my-widgets">
+      <!-- have one of these divs for each widget in list -->
+
+        <% if @my_widgets.empty? %>
+          Go make a widget, slacker.
+        <% else %>
+
+          <% @my_widgets.each do |widget| %>
+            <div class="widget-list-item" data-widget-id="<%= widget.id %>">
+              <div class="widget-logo">
+                <!-- Logo image will go here. For now, just a gray box -->
+              </div>
+
+              <div class="widget-info">
+                <h4><%= widget.widget_name %></h4>
+                <p><%= widget.description %></p>
+                <a href="#" data-widget-action="add">Add +</a>
+                <a href="#" data-widget-action="edit">Edit</a>
+                <a href="#" data-widget-action="delete" class="widget-delete-button">Delete</a>
+                <a href="#" data-widget-action="storePage">Store Page</a>
+              </div>
+            </div>
+          <% end %>
+
         <% end %>
 
-        It's currently <span class="toolbar-clock"><%= Time.now.strftime("%I:%M %p")%></span> on <%= Time.now.strftime("%A") %>.
-      </h4>
-    <% end %>
+      </div> <!-- /my-widgets -->
+
+      <!-- "INSTALLED" WIDGETS -->
+      <div id="installed-widgets">
+
+        <% if @installed_widgets.empty? %>
+          Go install some widgets from the <%= link_to "Store", widgets_path %>
+        <% else %>
+
+          <% @installed_widgets.each do |widget_install| %>
+            <div class="widget-list-item" data-widget-id="<%= widget_install.widget_id %>">
+              <div class="widget-logo">
+                <!-- Logo image will go here. For now, just a gray box -->
+              </div>
+
+              <div class="widget-info">
+                <h4><%= widget_install.widget.widget_name %></h4>
+                <p><%= widget_install.widget.description %></p>
+                <a href="#">Add +</a>
+                <a href="#" data-widget-action="uninstall">Uninstall</a>
+                <a href="#" data-widget-action="storePage">Store Page</a>
+              </div>
+            </div>
+          <% end %>
+
+        <% end %>
+
+      </div> <!-- /installed-widgets -->
+
+      <a href="#" id="create-widget-btn" data-widget-action="create">Create a new widget</a>
+    </section>
   </div>
-
-  <%= render 'shared/menu' %>
-</nav>
-<!-- end navigation -->
-
-<div class="dashboard-content">
-  <main>
-    <!-- TEMPORARY WIDGET PLACEHOLDERS FOR NOW -->
-    <% 60.times do %>
-      <div class="temp-widget"></div>
-    <% end %>
-  </main>
-
-
-  <!-- WIDGET LIST -->
-  <section id="widget-list">
-    <a href="" class="widget-list-tab active-tab" id="my-widgets-tab">My Widgets</a>
-    <a href="" class="widget-list-tab" id="installed-widgets-tab">Installed</a>
-
-    <!-- "MY WIDGETS" -->
-    <div id="my-widgets">
-    <!-- have one of these divs for each widget in list -->
-
-      <% if @my_widgets.empty? %>
-        Go make a widget, slacker.
-      <% else %>
-
-        <% @my_widgets.each do |widget| %>
-          <div class="widget-list-item" data-widget-id="<%= widget.id %>">
-            <div class="widget-logo">
-              <!-- Logo image will go here. For now, just a gray box -->
-            </div>
-
-            <div id="widget-info">
-              <h4><%= widget.widget_name %></h4>
-              <p><%= widget.description %></p>
-              <a href="#">Add +</a>
-              <a href="#" data-widget-action="edit">Edit</a>
-              <a href="#" data-widget-action="delete" class="widget-delete-button">Delete</a>
-              <a href="#" data-widget-action="storePage">Store Page</a>
-            </div>
-          </div>
-        <% end %>
-
-      <% end %>
-
-    </div> <!-- /my-widgets -->
-
-    <!-- "INSTALLED" WIDGETS -->
-    <div id="installed-widgets">
-
-      <% if @installed_widgets.empty? %>
-        Go install some widgets from the <%= link_to "Store", widgets_path %>
-      <% else %>
-
-        <% @installed_widgets.each do |widget| %>
-          <div class="widget-list-item" data-widget-id="<%= widget.id %>">
-            <div class="widget-logo">
-              <!-- Logo image will go here. For now, just a gray box -->
-            </div>
-
-            <div id="widget-info">
-              <h4><%= widget.widget_name %></h4>
-              <p><%= widget.description %></p>
-              <a href="#">Add +</a>
-              <a href="#" data-widget-action="uninstall">Uninstall</a>
-              <a href="#" data-widget-action="storePage">Store Page</a>
-            </div>
-          </div>
-        <% end %>
-
-      <% end %>
-
-    </div> <!-- /installed-widgets -->
-
-    <a href="#" id="create-widget-btn" data-widget-action="create">Create a new widget</a>
-  </section>
 </div>
 
-<%= render 'partials/widget_editor' %>
+<%= render 'shared/widget_editor' %>

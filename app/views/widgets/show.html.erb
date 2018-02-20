@@ -1,3 +1,145 @@
+<% if notice || alert %>
+  <p class="general-alerts">
+    <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
+  </p>
+<% end %>
+
+<nav>
+  <%= render 'shared/menu' %>
+</nav>
+
+<div class="store-details-container">
+  <div class="store-details-pane">
+    <p><%= link_to ('&laquo; Back').html_safe, widgets_path %></p>
+
+    <div class="store-details-title">
+      <div class="widget-logo-bg">
+        <% if !@widget.logo_url.nil? && @widget.logo_url != "" %>
+          <%= image_tag(@widget.logo_url, alt: @widget.widget_name) %>
+        <% else %>
+          <p>X</p>
+        <% end %>
+      </div>
+
+      <h2><%= @widget.widget_name %></h2>
+
+      <p class="widget-author">
+        By
+        <% if !@widget_author.full_name.nil? && @widget_author.full_name != "" %>
+          <%= @widget_author.full_name %>
+        <% elsif !@widget_author.user_name.nil? && @widget_author.user_name != "" %>
+          <%= @widget_author.user_name %>
+        <% elsif !@widget_author.email.nil? && @widget_author.email != "" %>
+          <%= @widget_author.email %>
+        <% else %>
+          Anonymous
+        <% end %>
+      </p>
+
+      <p class="widget-rating">
+        <% if (avg_rating = @widget.reviews.all.average(:rating)).nil? %>
+          &#9734; No ratings
+        <% else %>
+          <%= raw("&#9733;" * avg_rating.to_f.round + "&#9734;" * (5 - avg_rating.to_f.round)) %> <%= avg_rating.to_f.round(1) %>
+        <% end %>
+
+        <br>
+        <a href="#review-form" id="review-link">Review this widget</a>
+      </p>
+
+      <% if current_user.widgets.where(id: @widget.id).first.nil? %>
+        <% if (widget_install = @widget.widget_installs.where(user_id: current_user.id).first).nil? %>
+          <%= form_for([@widget, @widget.widget_installs.build]) do |f| %>
+            <%= f.submit "INSTALL", class: "store-install-button" %>
+          <% end %>
+        <% else %>
+          <%= button_to "UNINSTALL", widget_install_path(widget_install), method: :delete, data: {confirm: "Are you sure?"}, class: "store-uninstall-button" %>
+        <% end %>
+      <% end %>
+    </div>
+
+    <% if @widget.screenshots.nil? || @widget.screenshots.size == 0 %>
+      <div class="no-screenshots">
+        <p>No screenshots available</p>
+      </div>
+    <% else %>
+      <div class="screenshot-gallery">
+        <% @widget.screenshots.each do |screenshot| %>
+          <%= image_tag screenshot.screenshot_url, alt: @widget.widget_name %>
+        <% end %>
+      </div>
+    <% end %>
+
+    <div class="widget-info">
+      <p>
+        <%= @widget.widget_installs.count %>
+        <%= @widget.widget_installs.count == 1 ? "install" : "installs" %>
+      </p>
+
+      <p><%= @widget.description %></p>
+    </div>
+
+    <!-- REVIEWS -->
+    <hr><h2 id="reviews-h2">Reviews</h2><hr>
+
+    <!-- list of reviews -->
+    <section id="reviews">
+      <% if @widget.reviews.count != 0 %>
+        <% @widget.reviews.each do |review| %>
+          <div class="review">
+              <h4>Reviewer's Name</h4>
+
+              <p id="review-rating">
+                <%= raw("&#9733;" * review.rating.to_f.round + "&#9734;" * (5 - review.rating.to_f.round)) %>
+              </p>
+
+              <p id="review-date"><%= review.created_at.strftime("%b %d, %Y") %></p>
+
+              <p><%= review.review_text %></p>
+          </div>
+        <% end %>
+      <% else %>
+        <p style="text-align: center">No one has reviewed this widget yet.</p>
+      <% end %>
+    </section>
+
+    <!-- REVIEW FORM -->
+    <div id="review-form">
+      <h3>Leave A Review</h3>
+
+      <form>
+        <label for="rating">Rating</label>
+        <select id="rating">
+          <option>1</option>
+          <option>2</option>
+          <option>3</option>
+          <option>4</option>
+          <option>5</option>
+        </select>
+
+        <label for="review-textarea">Review</label>
+        <textarea id="review-textarea"></textarea>
+
+        <button type="submit" id="submit-review">Submit Review</button>
+      </form>
+    </div>
+
+    <p style="text-align: center"><%= link_to ('&laquo; Back').html_safe, widgets_path %></p>
+  </div>
+</div>
+
+<script>
+    // Activate gallery plugin
+    $(document).ready(function () {
+        $('.screenshot-gallery').gallery({
+            items: 6,
+            thumbHeight: 100,
+            singleLine: true
+        });
+    });
+</script>
+
+<!--
 <p id="notice"><%= notice %></p>
 
 <p>
@@ -17,3 +159,4 @@
 
 <%= link_to 'Edit', edit_widget_path(@widget) %> |
 <%= link_to 'Back', widgets_path %>
+-->

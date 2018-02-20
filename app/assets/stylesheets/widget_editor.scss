@@ -36,6 +36,18 @@
 
   width: 100%;
   max-width: 800px;
+  
+  border: 1px solid orange;
+  
+  height: 90%;
+  
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: stretch;
+}
+
+.CodeMirror {
+  flex: 1 1 100%;
 }
 
 .editor-toolbar-item {

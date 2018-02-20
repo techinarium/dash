@@ -1,0 +1,39 @@
+<nav>
+  <%= render 'shared/menu' %>
+</nav>
+
+<div class="ban-page">
+  <h1>User Ban Status</h1>
+  <table class="ban-table">
+    <thead>
+      <th>Email</th>
+      <th>Publish Ban</th>
+      <th>Login Ban</th>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><%= user.email %></td>
+          <td>
+            <% if user.publish_banned %>
+              <span class="banned-color">●</span>
+              <%= link_to "Unban", publish_ban_path(user), method: :post %>
+            <% else %>
+              <span class="unbanned-color">●</span>
+              <%= link_to "Ban", publish_ban_path(user), method: :post %>
+            <% end %>
+          </td>
+          <td>
+            <% if user.login_banned %>
+              <span class="banned-color">●</span>
+              <%= link_to "Unban", login_ban_path(user), method: :post %>
+            <% else %>
+              <span class="unbanned-color">●</span>
+              <%= link_to "Ban", login_ban_path(user), method: :post %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<div>
