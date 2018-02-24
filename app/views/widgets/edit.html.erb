@@ -1,6 +1,33 @@
-<h1>Editing Widget</h1>
+<nav>
+  <%= render 'shared/menu' %>
+</nav>
 
-<%= render 'form', widget: @widget %>
+<div class="store-details-container">
+  <div class="store-details-pane edit-widget">
+  <h2>Editing <%= @widget.widget_name %></h2>
+    <%= form_for @widget do | w | %>
 
-<%= link_to 'Show', @widget %> |
-<%= link_to 'Back', widgets_path %>
+      <%= w.label :widget_name %>
+      <%= w.text_field :widget_name %>
+
+      <%= w.label :description%>
+      <%= w.text_area :description %>
+
+      <%= w.label :logo_url%>
+      <%= w.text_field :logo_url %>
+
+      <%= w.label :screenshots%>
+      <a href="" class="upload-link">Upload</a>
+
+
+      <%= w.submit "Update Widget" %>
+  <% end %>
+
+    <p>
+      <%= link_to 'View', @widget %> |
+      <%= link_to 'Back', widgets_path %>
+    </p>
+  </div>
+</div>
+
+<!--<%= render 'form', widget: @widget %>-->
