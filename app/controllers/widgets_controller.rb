@@ -16,7 +16,6 @@ class WidgetsController < ApplicationController
   def show
     @widget = Widget.find(params[:id])
     @widget_codes = @widget.widget_codes
-    @widget_author = User.find(@widget.user_id)
 
     respond_to do |format|
       format.json do
