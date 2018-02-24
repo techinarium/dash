@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :confirm_login
-  before_action :set_review, only: [:destroy]
+  before_action :set_review, only: [:update, :destroy]
 
   # GET /reviews
   # GET /reviews.json
@@ -32,7 +32,6 @@ class ReviewsController < ApplicationController
 
     respond_to do |format|
       if @review.save
-      # if (@review = @widget.reviews.create(user_id: current_user.id, widget_id: :widget_id, rating: :rating, review_text: :review_text)).save
         # format.html { redirect_to @review, notice: 'Review was successfully created.' }
         format.html { redirect_to widget_path(@widget), notice: 'Your review was successfully submitted.' }
         format.json { render :show, status: :created, location: @review }
@@ -47,9 +46,10 @@ class ReviewsController < ApplicationController
   # PATCH/PUT /reviews/1
   # PATCH/PUT /reviews/1.json
   def update
+    @widget = Widget.find(params[:widget_id])
     respond_to do |format|
       if @review.update(review_params)
-        format.html { redirect_to @review, notice: 'Review was successfully updated.' }
+        format.html { redirect_to widget_path(@widget), notice: 'Your review was successfully updated.' }
         format.json { render :show, status: :ok, location: @review }
       else
         format.html { render :edit }
@@ -61,9 +61,10 @@ class ReviewsController < ApplicationController
   # DELETE /reviews/1
   # DELETE /reviews/1.json
   def destroy
+    @widget = Widget.find(@review.widget_id)
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to reviews_url, notice: 'Review was successfully destroyed.' }
+      format.html { redirect_to widget_path(@widget), notice: 'Your review was successfully deleted.' }
       format.json { head :no_content }
     end
   end

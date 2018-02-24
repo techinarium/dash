@@ -46,6 +46,8 @@
 }
 
 #review-form {
+  position: relative;
+
   label {
     display: block;
     color: #717171;
@@ -71,13 +73,20 @@
     font-family: inherit;
   }
 
-  .store-review-button {
+  .store-review-button,
+  .store-review-delete-button {
     border: 0;
     outline: 0;
     background-color: var(--accent-color);
     color: var(--bg-color);
     padding: 0.4em 1.2em;
     font-size: 1.1em;
-    margin: 0 auto;
+  }
+
+  .store-review-delete-button {
+    position: absolute;
+    top: 60px;
+    right: 15px;
+    background-color: #ff0000;
   }
 }

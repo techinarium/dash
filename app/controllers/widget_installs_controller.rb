@@ -32,7 +32,6 @@ class WidgetInstallsController < ApplicationController
 
     respond_to do |format|
       if @widget_install.save
-      # if (@widget_install = @widget.widget_installs.create(user_id: current_user.id, widget_id: :widget_id)).save
         # format.html { redirect_to @widget_install, notice: 'Widget install was successfully created.' }
         format.html { redirect_to widget_path(@widget), notice: 'Widget was successfully installed.' }
         format.json { render :show, status: :created, location: @widget_install }

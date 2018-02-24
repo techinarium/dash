@@ -76,6 +76,9 @@
 
     <!-- WIDGET INFO -->
     <div class="widget-info">
+      <% latest_version = @widget.widget_codes.where(published: true).order(:updated_at).last %>
+      <p>Updated <%= latest_version.updated_at.strftime("%b %d, %Y") %></p>
+
       <p>
         <%= @widget.widget_installs.count %>
         <%= @widget.widget_installs.count == 1 ? "install" : "installs" %>
@@ -123,7 +126,7 @@
     <div id="review-form">
       <h3>Leave A Review</h3>
 
-      <% review = @widget.reviews.build %>
+      <% review = current_user.reviews.where(widget_id: @widget.id).first || @widget.reviews.build %>
       <%= form_for([@widget, review]) do |f| %>
         <%= f.label :rating %>
         <% ratings = [1, 2, 3, 4, 5] %>
@@ -135,6 +138,10 @@
         <div class="center">
           <%= f.submit "SUBMIT REVIEW", class: "store-review-button" %>
         </div>
+      <% end %>
+
+      <% if !review.id.nil? %>
+        <%= button_to "DELETE", review_path(review), method: :delete, data: {confirm: "Are you sure?"}, class: "store-review-delete-button" %>
       <% end %>
     </div>
 
