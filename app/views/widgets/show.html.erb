@@ -12,6 +12,7 @@
   <div class="store-details-pane">
     <p><%= link_to ('&laquo; Back').html_safe, widgets_path %></p>
 
+    <!-- WIDGET TOP INFO BAR -->
     <div class="store-details-title">
       <div class="widget-logo-bg">
         <% if !@widget.logo_url.nil? && @widget.logo_url != "" %>
@@ -23,14 +24,15 @@
 
       <h2><%= @widget.widget_name %></h2>
 
+      <% widget_author = User.find(@widget.user_id) %>
       <p class="widget-author">
         By
-        <% if !@widget_author.full_name.nil? && @widget_author.full_name != "" %>
-          <%= @widget_author.full_name %>
-        <% elsif !@widget_author.user_name.nil? && @widget_author.user_name != "" %>
-          <%= @widget_author.user_name %>
-        <% elsif !@widget_author.email.nil? && @widget_author.email != "" %>
-          <%= @widget_author.email %>
+        <% if !widget_author.full_name.nil? && widget_author.full_name != "" %>
+          <%= widget_author.full_name %>
+        <% elsif !widget_author.user_name.nil? && widget_author.user_name != "" %>
+          <%= widget_author.user_name %>
+        <% elsif !widget_author.email.nil? && widget_author.email != "" %>
+          <%= widget_author.email %>
         <% else %>
           Anonymous
         <% end %>
@@ -49,7 +51,8 @@
 
       <% if current_user.widgets.where(id: @widget.id).first.nil? %>
         <% if (widget_install = @widget.widget_installs.where(user_id: current_user.id).first).nil? %>
-          <%= form_for([@widget, @widget.widget_installs.build]) do |f| %>
+          <% widget_install = @widget.widget_installs.build %>
+          <%= form_for([@widget, widget_install]) do |f| %>
             <%= f.submit "INSTALL", class: "store-install-button" %>
           <% end %>
         <% else %>
@@ -58,6 +61,7 @@
       <% end %>
     </div>
 
+    <!-- WIDGET SCREENSHOTS GALLERY -->
     <% if @widget.screenshots.nil? || @widget.screenshots.size == 0 %>
       <div class="no-screenshots">
         <p>No screenshots available</p>
@@ -70,6 +74,7 @@
       </div>
     <% end %>
 
+    <!-- WIDGET INFO -->
     <div class="widget-info">
       <p>
         <%= @widget.widget_installs.count %>
@@ -86,8 +91,19 @@
     <section id="reviews">
       <% if @widget.reviews.count != 0 %>
         <% @widget.reviews.each do |review| %>
+          <% review_author = User.find(review.user_id) %>
           <div class="review">
-              <h4>Reviewer's Name</h4>
+              <h4>
+                <% if !review_author.full_name.nil? && review_author.full_name != "" %>
+                  <%= review_author.full_name %>
+                <% elsif !review_author.user_name.nil? && review_author.user_name != "" %>
+                  <%= review_author.user_name %>
+                <% elsif !review_author.email.nil? && review_author.email != "" %>
+                  <%= review_author.email %>
+                <% else %>
+                  Anonymous
+                <% end %>
+              </h4>
 
               <p id="review-rating">
                 <%= raw("&#9733;" * review.rating.to_f.round + "&#9734;" * (5 - review.rating.to_f.round)) %>
@@ -99,7 +115,7 @@
           </div>
         <% end %>
       <% else %>
-        <p style="text-align: center">No one has reviewed this widget yet.</p>
+        <p class="center">No one has reviewed this widget yet.</p>
       <% end %>
     </section>
 
@@ -107,21 +123,19 @@
     <div id="review-form">
       <h3>Leave A Review</h3>
 
-      <form>
-        <label for="rating">Rating</label>
-        <select id="rating">
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
-          <option>5</option>
-        </select>
+      <% review = @widget.reviews.build %>
+      <%= form_for([@widget, review]) do |f| %>
+        <%= f.label :rating %>
+        <% ratings = [1, 2, 3, 4, 5] %>
+        <%= f.select :rating, options_for_select(ratings, selected: review.rating) %>
 
-        <label for="review-textarea">Review</label>
-        <textarea id="review-textarea"></textarea>
+        <%= f.label :review_text, "Review" %>
+        <%= f.text_area :review_text, placeholder: "Write something here (optional)" %>
 
-        <button type="submit" id="submit-review">Submit Review</button>
-      </form>
+        <div class="center">
+          <%= f.submit "SUBMIT REVIEW", class: "store-review-button" %>
+        </div>
+      <% end %>
     </div>
 
     <p><%= link_to ('&laquo; Back').html_safe, widgets_path %></p>

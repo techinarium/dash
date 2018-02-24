@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :confirm_login
-  before_action :set_review, only: [:show, :edit, :update, :destroy]
+  before_action :set_review, only: [:destroy]
 
   # GET /reviews
   # GET /reviews.json
@@ -25,14 +25,20 @@ class ReviewsController < ApplicationController
   # POST /reviews
   # POST /reviews.json
   def create
-    @review = Review.new(review_params)
+    @widget = Widget.find(params[:widget_id])
+    @review = @widget.reviews.build(review_params)
+    @review.widget_id = @widget.id
+    @review.user_id = current_user.id
 
     respond_to do |format|
       if @review.save
-        format.html { redirect_to @review, notice: 'Review was successfully created.' }
+      # if (@review = @widget.reviews.create(user_id: current_user.id, widget_id: :widget_id, rating: :rating, review_text: :review_text)).save
+        # format.html { redirect_to @review, notice: 'Review was successfully created.' }
+        format.html { redirect_to widget_path(@widget), notice: 'Your review was successfully submitted.' }
         format.json { render :show, status: :created, location: @review }
       else
-        format.html { render :new }
+        # format.html { render :new }
+        format.html { redirect_to widget_path(@widget), error: 'An issue occurred. Your review was not submitted.' }
         format.json { render json: @review.errors, status: :unprocessable_entity }
       end
     end

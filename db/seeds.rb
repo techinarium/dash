@@ -40,7 +40,7 @@ CONTENT
   widget = Widget.create(
       widget_name: "Widget #{w}",
       logo_url: "https://picsum.photos/100/100/?image=#{rand(50)}",
-      description: Faker::Lorem.words(2).join(" ").capitalize,
+      description: Faker::Lorem.words.join(" ").capitalize,
       user_id: widget_author_id
   )
 
