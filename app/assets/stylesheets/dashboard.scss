@@ -118,6 +118,11 @@ nav {
   margin-top: 24px;
 }
 
+#installed-widgets a {
+  text-decoration: none;
+  color: var(--accent-color);
+}
+
 #create-widget-btn {
   display: block;
   background-color: var(--accent-color);

@@ -59,6 +59,10 @@
           <%= button_to "UNINSTALL", widget_install_path(widget_install), method: :delete, data: {confirm: "Are you sure?"}, class: "store-uninstall-button" %>
         <% end %>
       <% end %>
+
+      <% if @widget.user_id == current_user.id %>
+        <%= link_to 'Edit', edit_widget_path, class: "store-install-button edit-widget-btn" %>
+      <% end %>
     </div>
 
     <!-- WIDGET SCREENSHOTS GALLERY -->
