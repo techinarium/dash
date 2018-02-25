@@ -5,7 +5,7 @@
 <div class="store-details-container">
   <div class="store-details-pane edit-widget">
   <h2>Editing <%= @widget.widget_name %></h2>
-    <%= form_for @widget do | w | %>
+    <%= form_for@widget, :html => { multipart: true } do |w| %>
 
       <%= w.label :widget_name %>
       <%= w.text_field :widget_name %>
@@ -16,9 +16,8 @@
       <%= w.label :logo_url%>
       <%= w.text_field :logo_url %>
 
-      <%= w.label :screenshots%>
-      <a href="" class="upload-link">Upload</a>
-
+      <%= w.label :screenshots %>
+      <%= file_field_tag "images[]", type: :file, multiple: true %>
 
       <%= w.submit "Update Widget" %>
   <% end %>

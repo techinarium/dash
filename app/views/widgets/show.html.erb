@@ -73,7 +73,7 @@
     <% else %>
       <div class="screenshot-gallery">
         <% @widget.screenshots.each do |screenshot| %>
-          <%= image_tag screenshot.screenshot_url, alt: @widget.widget_name %>
+          <%= image_tag screenshot.url, alt: @widget.widget_name %>
         <% end %>
       </div>
     <% end %>
