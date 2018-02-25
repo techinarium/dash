@@ -3,8 +3,9 @@ import _element from './element.js'
 export default function(state, events) {
   return function(root) {
     const { RAW } = _element(state)
-    
-    state.root = root || state.root
+
+    root = root || state.root
+    state.root = root
 
     const layouts = state.layouts
       .filter(l => l.size === state.size)
@@ -12,8 +13,18 @@ export default function(state, events) {
     if (state.dom) {
       state.dom.parentNode.removeChild(state.dom)
     }
-    
-    state.dom = layouts[0].render()
+
+    if (state.layoutName) {
+      const layout = layouts.find(l => l.name === state.layoutName)
+
+      if (layout) {
+        state.dom = layout.render()
+      } else {
+        state.dom = layouts[0].render()
+      }
+    } else {
+      state.dom = layouts[0].render()
+    }
   
     const toolbar = RAW('div', { class: 'widget-toolbar' }, [
       RAW('a', {

@@ -169,6 +169,10 @@ nav {
       pointer-events: all;
     }
   }
+
+  &.dragging {
+    opacity: 0.5;
+  }
 }
 
 .widget-toolbar {

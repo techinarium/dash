@@ -1,4 +1,4 @@
-export default function(state) {
+export default function(state, events) {
 
   if (!state.layouts) state.layouts = []
 
@@ -33,6 +33,8 @@ export default function(state) {
   function setLayout(name, transition) {
     console.log('Setting layout to ' + name)
 
+    state.layoutName = name;
+    events.emit('setLayout', name)
     // Render the layout for the current size, save it as state.dom and append it to state.root
   }
 
