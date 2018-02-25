@@ -51,7 +51,7 @@ export default function() {
         events.once(event, func)
       },
       init(root) {
-        data._load()
+        if (!state.data || Object.keys(state.data).length === 0) data._load()
         state.size = state.size || (state.layouts.find(l => l.default) || state.layouts[0]).size
         render(root)
       },

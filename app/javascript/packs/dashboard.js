@@ -43,9 +43,7 @@ $(document).on('turbolinks:load', () => {
         const widget = eval(latestCode.widget_code)
         widget.state.instanceID = instance.id
         widget.state.widgetID = instance.widget_id
-        widget.state.data = typeof instance.data === 'string'
-          ? JSON.parse(instance.data)
-          : instance.data
+        widget.state.data = instance.data
 
         if (instance.size_x && instance.size_y) {
           widget.state.size = instance.size_x + 'x' + instance.size_y

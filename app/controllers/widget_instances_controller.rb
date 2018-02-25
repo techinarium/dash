@@ -49,7 +49,7 @@ class WidgetInstancesController < ApplicationController
   # PATCH/PUT /widget_instances/1.json
   def update
     respond_to do |format|
-      if @widget_instance.update(widget_instance_params)
+      if @widget_instance.update(widget_instance_params) && @widget_instance.update(data: params[:widget_instance][:data])
         format.html { redirect_to @widget_instance, notice: 'Widget instance was successfully updated.' }
         format.json { render json: @widget_instance, status: 200 }
       else
@@ -77,6 +77,7 @@ class WidgetInstancesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def widget_instance_params
-      params.require(:widget_instance).permit(:widget_id, :data, :size_x, :size_y, :coord_x, :coord_y)
+      params.require(:widget_instance)
+            .permit(:widget_id, :size_x, :size_y, :coord_x, :coord_y, :data)
     end
 end
