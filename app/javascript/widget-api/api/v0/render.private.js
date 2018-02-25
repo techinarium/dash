@@ -22,7 +22,7 @@ export default function(state, events) {
       } else {
         state.dom = layouts[0].render()
       }
-    } else {
+    } else if (layouts[0] || state.layouts[0]) {
       state.dom = layouts[0].render()
     }
   

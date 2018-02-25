@@ -46,14 +46,6 @@ export default function() {
     const { root } = widget.state
     const unitSize = dm.unitSize
 
-    console.log({
-      width: w * unitSize,
-      height: h * unitSize
-    })
-
-    // console.log(widget.state)
-    console.log(widget.state, w, h)
-
     root.width = w * unitSize
     root.height = h * unitSize
     root.style.width = w * unitSize + 'px'

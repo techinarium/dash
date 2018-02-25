@@ -23,6 +23,15 @@ export default function() {
 
   events.on('setLayout', () => {
     render()
+    events.emit('stateChanged', state)
+  })
+
+  events.on('sizeChanged', () => {
+    events.emit('stateChanged', state)
+  })
+
+  events.on('coordsChanged', () => {
+    events.emit('stateChanged', state)
   })
 
   return {
@@ -43,11 +52,12 @@ export default function() {
       },
       init(root) {
         data._load()
-        state.size = '2x2'
+        state.size = state.size || (state.layouts.find(l => l.default) || state.layouts[0]).size
         render(root)
       },
       setCoords(x, y) {
         state.coords = { x, y }
+        event.emit('coordsChanged', state)
       },
       render,
     },
@@ -64,7 +74,7 @@ export default function() {
 
         if (isValid && hasLayout) {
           state.size = value
-          events.emit('setSize', state)
+          events.emit('sizeChanged', state)
           render()
         } else {
           if (!isValid) {
