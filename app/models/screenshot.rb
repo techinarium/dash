@@ -4,7 +4,7 @@ class Screenshot < ActiveRecord::Base
   attr_accessor :image_file_name
 
   has_attached_file :image,
-  :path => "screenshots/:filename",
+  :path => "screenshots/#{SecureRandom.uuid}/:filename",
   :url  => ":s3_path_url"
 
   do_not_validate_attachment_file_type :image
