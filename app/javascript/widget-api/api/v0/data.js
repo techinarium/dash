@@ -1,17 +1,17 @@
-export default function(state) {
+export default function(state, events) {
 
   if (!state.data) state.data = {}
 
   function _save() {
     localStorage.setItem(`widget_instance_${state.instanceID}_data`, JSON.stringify(state.data))
     
-    console.log('saved', state.data)
+    // console.log('saved', state.data)
   }
 
   function _load() {
     state.data = JSON.parse(localStorage.getItem(`widget_instance_${state.instanceID}_data`) || '{}')
     
-    console.log('loaded', state.data)
+    // console.log('loaded', state.data)
   }
 
   function get(property) {
@@ -48,6 +48,7 @@ export default function(state) {
       throw new Error('data.set() takes either a string or an object as the first parameter. Received ' + (typeof parameter))
     }
 
+    events.emit('dataChanged', state)
     _save() // Save after every set.
   }
 

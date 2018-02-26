@@ -49,7 +49,11 @@
           <% @my_widgets.each do |widget| %>
             <div class="widget-list-item" data-widget-id="<%= widget.id %>">
               <div class="widget-logo">
-                <!-- Logo image will go here. For now, just a gray box -->
+                <% if !widget.logo_url.nil? && widget.logo_url != "" %>
+                  <%= image_tag(widget.logo_url, alt: widget.widget_name, width: 60, height: 60) %>
+                <% else %>
+                  <p>X</p>
+                <% end %>
               </div>
 
               <div class="widget-info">
@@ -58,7 +62,8 @@
                 <a href="#" data-widget-action="add">Add +</a>
                 <a href="#" data-widget-action="edit">Edit</a>
                 <a href="#" data-widget-action="delete" class="widget-delete-button">Delete</a>
-                <a href="#" data-widget-action="storePage">Store Page</a>
+                <!--<a href="#" data-widget-action="storePage">Store Page</a>-->
+                <%= link_to 'Store Page', widget %>
               </div>
             </div>
           <% end %>
@@ -71,13 +76,18 @@
       <div id="installed-widgets">
 
         <% if @installed_widgets.empty? %>
-          Go install some widgets from the <%= link_to "Store", widgets_path %>
+          Go install some widgets from the <%= link_to "Store", widgets_path %>.
         <% else %>
 
           <% @installed_widgets.each do |widget_install| %>
             <div class="widget-list-item" data-widget-id="<%= widget_install.widget_id %>">
               <div class="widget-logo">
-                <!-- Logo image will go here. For now, just a gray box -->
+                <% installed_widget = Widget.find(widget_install.widget_id) %>
+                <% if !installed_widget.logo_url.nil? && installed_widget.logo_url != "" %>
+                  <%= image_tag(installed_widget.logo_url, alt: installed_widget.widget_name, width: 60, height: 60) %>
+                <% else %>
+                  <p>X</p>
+                <% end %>
               </div>
 
               <div class="widget-info">
@@ -85,7 +95,8 @@
                 <p><%= widget_install.widget.description %></p>
                 <a href="#">Add +</a>
                 <a href="#" data-widget-action="uninstall">Uninstall</a>
-                <a href="#" data-widget-action="storePage">Store Page</a>
+                <!--<a href="#" data-widget-action="storePage">Store Page</a>-->
+                <%= link_to 'Store Page', installed_widget %>
               </div>
             </div>
           <% end %>

@@ -93,6 +93,7 @@ nav {
 
 .widget-list-tabs {
   display: flex;
+  min-height: 50px;
 }
 
 .widget-list-tab {
@@ -115,6 +116,11 @@ nav {
 
 #my-widgets, #installed-widgets {
   margin-top: 24px;
+}
+
+#installed-widgets a {
+  text-decoration: none;
+  color: var(--accent-color);
 }
 
 #create-widget-btn {
@@ -162,6 +168,10 @@ nav {
       transform: translateY(0px);
       pointer-events: all;
     }
+  }
+
+  &.dragging {
+    opacity: 0.5;
   }
 }
 

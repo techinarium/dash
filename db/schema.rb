@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180213034112) do
+ActiveRecord::Schema.define(version: 20180225001534) do
 
   create_table "reviews", force: :cascade do |t|
     t.integer "rating"
@@ -85,6 +85,10 @@ ActiveRecord::Schema.define(version: 20180213034112) do
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "coord_x"
+    t.integer "coord_y"
+    t.integer "size_x"
+    t.integer "size_y"
     t.index ["user_id"], name: "index_widget_instances_on_user_id"
     t.index ["widget_id"], name: "index_widget_instances_on_widget_id"
   end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :screenshots
 
   resources :widgets do
+    resources :reviews
     resources :widget_installs
   end
 

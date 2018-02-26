@@ -21,6 +21,19 @@ export default function() {
 
   const { layout, setLayout } = _layout(state, events)
 
+  events.on('setLayout', () => {
+    render()
+    events.emit('stateChanged', state)
+  })
+
+  events.on('sizeChanged', () => {
+    events.emit('stateChanged', state)
+  })
+
+  events.on('coordsChanged', () => {
+    events.emit('stateChanged', state)
+  })
+
   return {
     private: {
       // This is where the internal lifecycle triggers and things might go
@@ -38,15 +51,40 @@ export default function() {
         events.once(event, func)
       },
       init(root) {
-        data._load()
-        state.size = '2x2'
+        if (!state.data || Object.keys(state.data).length === 0) data._load()
+        state.size = state.size || (state.layouts.find(l => l.default) || state.layouts[0]).size
         render(root)
+      },
+      setCoords(x, y) {
+        state.coords = { x, y }
+        event.emit('coordsChanged', state)
       },
       render,
     },
     public: {
       get dom() {
         return state.dom
+      },
+      get size() {
+        return state.size
+      },
+      set size(value) {
+        const isValid = ['1x1', '1x2', '2x1', '2x2'].includes(value.toLowerCase())
+        const hasLayout = state.layouts.map(s => s.size).includes(value)
+
+        if (isValid && hasLayout) {
+          state.size = value
+          events.emit('sizeChanged', state)
+          render()
+        } else {
+          if (!isValid) {
+            throw new Error(`Can't set size to ${value}: must be one of these strings: '1x1', '1x2', '2x1', '2x2'`)
+          }
+
+          if (!hasLayout) {
+            throw new Error(`Can't set size to ${value}: No layouts defined for that size.`)
+          }
+        }
       },
       data: {
         get: data.get,

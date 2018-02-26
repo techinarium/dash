@@ -25,7 +25,6 @@ $(() => {
     }
     
     const time = `${hours}:${zeroPad(minutes)} ${m}`
-    console.log(time)
     
     $clock.text(time)
   }

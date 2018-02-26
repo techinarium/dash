@@ -15,6 +15,8 @@ $(document).on('turbolinks:load', () => {
   const Dash = API.public
   let widgets = []
 
+  const layout = Layout()
+
   // on('widgetCreated', widget => {
 //     console.log('widget', widget)
 //     Layout.add(widget)
@@ -25,34 +27,68 @@ $(document).on('turbolinks:load', () => {
     // whatever is needed to get them up and running in the dashboard.
     $.get('/widget_instances.json').done(instances => {
       instances.forEach(instance => {
-        loadWidget(instance.widget_id, instance.id)
+        loadWidgetInstance(instance)
       })
     }).fail(err => {
       console.error(err)
     })
   }
 
-  function loadWidget(widgetID, instanceID) {
-    console.log('loading widget', widgetID)
-
-    $.get(`/widgets/${widgetID}.json`).done(value => {
+  function loadWidgetInstance(instance) {
+    $.get(`/widgets/${instance.widget_id}.json`).done(value => {
       const latestCode = value.codes
         .sort((a, b) => a.updated_at > b.updated_at ? 1 : -1)[0]
 
       if (latestCode) {
         const widget = eval(latestCode.widget_code)
-        widget.state.instanceID = instanceID
+        widget.state.instanceID = instance.id
+        widget.state.widgetID = instance.widget_id
+        widget.state.data = instance.data
+
+        if (instance.size_x && instance.size_y) {
+          widget.state.size = instance.size_x + 'x' + instance.size_y
+        }
+
         widgets.push(widget)
-        
-        console.log(widget.state)
-        
-        Layout.add(widget)
-        widget.on('destroyRequested', instance => {
-          console.log(`widget instance ${instance} requested self destruct`)
+        layout.add(widget)
+
+        widget.on('destroyRequested', loadedInstance => {
+          console.log(`widget instance ${loadedInstance} requested self destruct`)
           widget.state.root.parentNode.removeChild(widget.state.root)
           widgets = widgets.filter(w => w !== widget)
-          destroyWidgetInstance(instance)
+          destroyWidgetInstance(loadedInstance)
         })
+
+        widget.on('dataChanged', state => {
+          console.log('data changed', state)
+        })
+
+        widget.on('sizeChanged', state => {
+          layout.updateSize(widget)
+        })
+
+        widget.on('stateChanged', state => {
+          const [size_x, size_y] = state.size.split('x').map(n => parseInt(n))
+          const sendable = {
+            data: state.data,
+            size_x,
+            size_y,
+            coord_x: 0,
+            coord_y: 0,
+          }
+
+          $.ajax(`/widget_instances/${instance.id}.json`, {
+            method: 'PATCH',
+            data: {
+              widget_instance: sendable
+            }
+          }).done(response => {
+            console.log('saved instance data', response)
+          }).fail(err => {
+            console.error(err)
+          })
+        })
+
       } else {
         alert('No loadable version of the widget code')
       }
@@ -69,7 +105,7 @@ $(document).on('turbolinks:load', () => {
         data: {}
       }
     }).done(result => {
-      loadWidget(result.widget_id, result.id)
+      loadWidgetInstance(result)
     }).fail(err => {
       console.error(err)
     })
