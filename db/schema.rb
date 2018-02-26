@@ -85,6 +85,10 @@ ActiveRecord::Schema.define(version: 20180225015344) do
     t.text "data"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "coord_x"
+    t.integer "coord_y"
+    t.integer "size_x"
+    t.integer "size_y"
     t.index ["user_id"], name: "index_widget_instances_on_user_id"
     t.index ["widget_id"], name: "index_widget_instances_on_widget_id"
   end
