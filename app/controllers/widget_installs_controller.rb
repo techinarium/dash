@@ -29,6 +29,7 @@ class WidgetInstallsController < ApplicationController
     @widget_install = @widget.widget_installs.create
     @widget_install.widget_id = @widget.id
     @widget_install.user_id = current_user.id
+    @widget_install.version = @widget.widget_codes.where('published = ?', true).last.version
 
     respond_to do |format|
       if @widget_install.save
@@ -78,6 +79,6 @@ class WidgetInstallsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def widget_install_params
-      params.require(:widget_install).permit(:user_id, :widget_id)
+      params.require(:widget_install).permit(:user_id, :widget_id, :version)
     end
 end
