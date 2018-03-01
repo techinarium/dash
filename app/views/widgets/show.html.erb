@@ -73,7 +73,7 @@
     <% else %>
       <div class="screenshot-gallery">
         <% @widget.screenshots.each do |screenshot| %>
-          <%= image_tag screenshot.screenshot_url, alt: @widget.widget_name %>
+          <%= image_tag screenshot.url, alt: @widget.widget_name %>
         <% end %>
       </div>
     <% end %>
@@ -81,7 +81,11 @@
     <!-- WIDGET INFO -->
     <div class="widget-info">
       <% latest_version = @widget.widget_codes.where(published: true).order(:updated_at).last %>
-      <p>Updated <%= latest_version.updated_at.strftime("%b %d, %Y") %></p>
+      <% if latest_version %>
+        <p>Updated <%= latest_version.updated_at.strftime("%b %d, %Y") %></p>
+      <% else %>
+        <p>Not published yet</p>
+      <% end %>
 
       <p>
         <%= @widget.widget_installs.count %>

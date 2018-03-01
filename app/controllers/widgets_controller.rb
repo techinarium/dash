@@ -73,6 +73,12 @@ class WidgetsController < ApplicationController
   def update
     respond_to do |format|
       if @widget.update(widget_params)
+        if params[:images]
+          params[:images].each { |image|
+            @widget.screenshots.create(image: image)
+          }
+        end
+
         format.html { redirect_to @widget, notice: 'Widget was successfully updated.' }
         format.json { render :show, status: :ok, location: @widget }
       else
@@ -106,6 +112,6 @@ class WidgetsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def widget_params
-      params.require(:widget).permit(:widget_name, :logo_url, :description)
+      params.require(:widget).permit(:widget_name, :logo_url, :description, :screenshots)
     end
 end
