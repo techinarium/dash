@@ -5,6 +5,8 @@ git_source(:github) do |repo_name|
   "https://github.com/#{repo_name}.git"
 end
 
+gem 'aws-sdk', '~> 2'
+gem 'paperclip'
 # Devise gem (https://github.com/plataformatec/devise)
 gem 'devise'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
@@ -65,5 +67,6 @@ gem 'faker'
 
 # Using webpack to bundle all the dashboard stuff
 gem 'webpacker', '~> 3.2'
+
 # Added at 2018-03-01 11:48:18 -0800 by schwingbat:
 gem "figaro", "~> 1.1"
