@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# (At least one user account should exist before running)
-
 # Destroy widget code first or the database complains
 # about its referential integrity.
 Review.destroy_all
@@ -16,6 +14,18 @@ WidgetInstance.destroy_all
 WidgetInstall.destroy_all
 WidgetCode.destroy_all
 Widget.destroy_all
+
+# Generate an admin account
+if User.where(email: "admin@email.com").first.nil?
+  user = User.new(
+      :email                 => "admin@email.com",
+      :password              => "123456",
+      :password_confirmation => "123456",
+      :admin                 => true
+  )
+  user.skip_confirmation!
+  user.save!
+end
 
 # Find a user account to tie widget authorship to
 widget_author_id = User.first.id
@@ -57,10 +67,14 @@ CONTENT
 
     # Create widget screenshots
     (0..rand(5)).each do
-      widget.screenshots.create(
-          screenshot_url: "https://picsum.photos/600/600/?image=#{rand(20)}"
-      )
-      widget.save!
+      # widget.screenshots.create(
+      #     screenshot_url: "https://picsum.photos/600/600/?image=#{rand(20)}"
+      # )
+
+      # bg_color = Faker::Color.hex_color.sub("#", "")
+      # screenshot_url = "https://dummyimage.com/600x600/#{bg_color}/fff.jpg"
+      # widget.screenshots.create(screenshot_url: URI.parse(screenshot_url))
+      # widget.save!
     end
 
     # Create widget reviews

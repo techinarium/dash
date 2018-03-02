@@ -73,7 +73,7 @@
     <% else %>
       <div class="screenshot-gallery">
         <% @widget.screenshots.each do |screenshot| %>
-          <%= image_tag screenshot.url, alt: @widget.widget_name %>
+          <%= image_tag screenshot.screenshot_url, alt: @widget.widget_name %>
         <% end %>
       </div>
     <% end %>
@@ -104,25 +104,29 @@
         <% @widget.reviews.each do |review| %>
           <% review_author = User.find(review.user_id) %>
           <div class="review">
-              <h4>
-                <% if !review_author.full_name.nil? && review_author.full_name != "" %>
-                  <%= review_author.full_name %>
-                <% elsif !review_author.user_name.nil? && review_author.user_name != "" %>
-                  <%= review_author.user_name %>
-                <% elsif !review_author.email.nil? && review_author.email != "" %>
-                  <%= review_author.email %>
-                <% else %>
-                  Anonymous
-                <% end %>
-              </h4>
+            <h4>
+              <% if !review_author.full_name.nil? && review_author.full_name != "" %>
+                <%= review_author.full_name %>
+              <% elsif !review_author.user_name.nil? && review_author.user_name != "" %>
+                <%= review_author.user_name %>
+              <% elsif !review_author.email.nil? && review_author.email != "" %>
+                <%= review_author.email %>
+              <% else %>
+                Anonymous
+              <% end %>
+            </h4>
 
-              <p id="review-rating">
-                <%= raw("&#9733;" * review.rating.to_f.round + "&#9734;" * (5 - review.rating.to_f.round)) %>
-              </p>
+            <p id="review-rating">
+              <%= raw("&#9733;" * review.rating.to_f.round + "&#9734;" * (5 - review.rating.to_f.round)) %>
+            </p>
 
-              <p id="review-date"><%= review.created_at.strftime("%b %d, %Y") %></p>
+            <p id="review-date"><%= review.created_at.strftime("%b %d, %Y") %></p>
 
-              <p><%= review.review_text %></p>
+            <p><%= review.review_text %></p>
+
+            <% if current_user.admin %>
+              <%= button_to "DELETE", review_path(review), method: :delete, data: {confirm: "Are you sure?"}, class: "store-review-delete-button" %>
+            <% end %>
           </div>
         <% end %>
       <% else %>
