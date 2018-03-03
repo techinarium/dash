@@ -64,7 +64,11 @@ class ReviewsController < ApplicationController
     @widget = Widget.find(@review.widget_id)
     @review.destroy
     respond_to do |format|
-      format.html { redirect_to widget_path(@widget), notice: 'Your review was successfully deleted.' }
+      if current_user.admin
+        format.html { redirect_to widget_path(@widget), notice: 'The review was successfully deleted.' }
+      else
+        format.html { redirect_to widget_path(@widget), notice: 'Your review was successfully deleted.' }
+      end
       format.json { head :no_content }
     end
   end

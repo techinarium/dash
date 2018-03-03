@@ -29,6 +29,7 @@ class WidgetInstancesController < ApplicationController
     parameters = {
       user_id: current_user.id,
       widget_id: widget_instance_params['widget_id'],
+      version: widget_instance_params['version'] || 1,
       data: widget_instance_params['data'] || {}
     }
     
@@ -78,6 +79,6 @@ class WidgetInstancesController < ApplicationController
     # Never trust parameters from the scary internet, only allow the white list through.
     def widget_instance_params
       params.require(:widget_instance)
-            .permit(:widget_id, :size_x, :size_y, :coord_x, :coord_y, :data)
+            .permit(:widget_id, :size_x, :size_y, :coord_x, :coord_y, :data, :version)
     end
 end

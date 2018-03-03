@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-# (At least one user account should exist before running)
-
 # Destroy widget code first or the database complains
 # about its referential integrity.
 Review.destroy_all
@@ -16,6 +14,18 @@ WidgetInstance.destroy_all
 WidgetInstall.destroy_all
 WidgetCode.destroy_all
 Widget.destroy_all
+
+# Generate an admin account
+if User.where(email: "admin@email.com").first.nil?
+  user = User.new(
+      :email                 => "admin@email.com",
+      :password              => "123456",
+      :password_confirmation => "123456",
+      :admin                 => true
+  )
+  user.skip_confirmation!
+  user.save!
+end
 
 # Find a user account to tie widget authorship to
 widget_author_id = User.first.id
@@ -46,7 +56,7 @@ CONTENT
 
   if widget.save
     # Create widget code versions
-    (1..rand(10)).each do |c|
+    rand(1..10).times do |c|
       widget.widget_codes.create(
           widget_code: widget_code_content,
           version: c,
@@ -56,15 +66,16 @@ CONTENT
     end
 
     # Create widget screenshots
-    (0..rand(5)).each do
-      widget.screenshots.create(
-          screenshot_url: "https://picsum.photos/600/600/?image=#{rand(20)}"
-      )
-      widget.save!
-    end
+    # NOT WORKING - need to update for Paperclip compatibility
+    # rand(5).times do
+    #   widget.screenshots.create(
+    #       screenshot_url: "https://picsum.photos/600/600/?image=#{rand(20)}"
+    #   )
+    #   widget.save!
+    # end
 
     # Create widget reviews
-    (0..rand(5)).each do |r|
+    rand(5).times do |r|
       widget.reviews.create(
           widget_id: widget.id,
           review_text: Faker::Lorem.paragraph,
