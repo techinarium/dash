@@ -56,7 +56,7 @@ CONTENT
 
   if widget.save
     # Create widget code versions
-    (1..rand(10)).each do |c|
+    rand(1..10).times do |c|
       widget.widget_codes.create(
           widget_code: widget_code_content,
           version: c,
@@ -66,19 +66,16 @@ CONTENT
     end
 
     # Create widget screenshots
-    (0..rand(5)).each do
-      # widget.screenshots.create(
-      #     screenshot_url: "https://picsum.photos/600/600/?image=#{rand(20)}"
-      # )
-
-      # bg_color = Faker::Color.hex_color.sub("#", "")
-      # screenshot_url = "https://dummyimage.com/600x600/#{bg_color}/fff.jpg"
-      # widget.screenshots.create(screenshot_url: URI.parse(screenshot_url))
-      # widget.save!
-    end
+    # NOT WORKING - need to update for Paperclip compatibility
+    # rand(5).times do
+    #   widget.screenshots.create(
+    #       screenshot_url: "https://picsum.photos/600/600/?image=#{rand(20)}"
+    #   )
+    #   widget.save!
+    # end
 
     # Create widget reviews
-    (0..rand(5)).each do |r|
+    rand(5).times do |r|
       widget.reviews.create(
           widget_id: widget.id,
           review_text: Faker::Lorem.paragraph,
