@@ -50,10 +50,14 @@ export default function() {
       once(event, func) {
         events.once(event, func)
       },
-      init(root) {
+      init(container) {
         if (!state.data || Object.keys(state.data).length === 0) data._load()
         state.size = state.size || (state.layouts.find(l => l.default) || state.layouts[0]).size
-        render(root)
+
+        state.container = container
+        state.root = container.querySelector('.widget-root')
+
+        render()
       },
       setCoords(x, y) {
         state.coords = { x, y }
