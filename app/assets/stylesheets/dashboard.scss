@@ -22,8 +22,9 @@ nav {
 }
 
 .menu {
-  display: inline-block;
-  margin-left: auto;
+  text-align: right;
+  position: absolute;
+  right: 18px;
 
   h4 {
     display: inline-block;
@@ -61,7 +62,6 @@ nav {
 \*========================*/
 
 #widget-list {
-  display: inline-block;
   width: 100%;
   max-width: 320px;
   margin-right: 1em;
@@ -131,7 +131,6 @@ nav {
   padding: 12px;
   text-align: center;
   text-decoration: none;
-  margin-top: 100px;
 }
 
 #create-widget-btn {
@@ -142,7 +141,7 @@ nav {
   padding: 12px;
   text-align: center;
   text-decoration: none;
-  margin-top: 100px;
+  margin: 30px 0;
 }
 
 /*=================*\

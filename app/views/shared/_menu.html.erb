@@ -9,4 +9,14 @@
 
   <h4><a id="menuBtn" href="#">MENU</a></h4>
   <!-- <%= link_to "Dash", root_path %> -->
+
+  <% if notice || alert %>
+    <div class="alert-div">
+      <p class="general-alerts">
+        <span class="notice"><%= notice %></span>&nbsp;<span class="alert"><%= alert %></span>
+        &nbsp;&nbsp;
+        <a href="#" id="hide-alert">&#10006;</a>
+      </p>
+    </div>
+  <% end %>
 </div>

@@ -60,10 +60,13 @@ input {
 .general-alerts {
   font-size: 0.9em;
   text-align: center;
-  position: absolute;
-  top: 10px;
-  left: 0;
-  right: 0;
+  display: inline-block;
+  padding: 12px 20px;
+  border: 1px solid var(--accent-color);
+  border-radius: 6px;
+  margin-top: 8px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  background-color: white;
 }
 
 .notice {
@@ -72,6 +75,17 @@ input {
 
 .alert {
   color: #ff0000;
+}
+
+#hide-alert{
+  color: #bcbcbc;
+  font-size: 14px;
+  text-decoration: none;
+  vertical-align: center;
+}
+
+.alert-div {
+  text-align: right;
 }
 
 // Errors
