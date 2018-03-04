@@ -38,7 +38,9 @@ export default function(state, events) {
           e.preventDefault()
           events.emit('destroyRequested', state.instanceID)
         }
-      }, 'X')
+      }, [
+        RAW('img', { src: '/widget-x-icon.png' })
+      ])
     ])
     
     root.appendChild(toolbar)

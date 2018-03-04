@@ -121,15 +121,16 @@ export default function() {
   $root.append($guide)
   const dm = DashMath($root)
 
-  function update() {
-    // Redo layout and make sure everything is rendered.
+  function updateWidget(widget) {
+    const { x, y } = coordsInPixels(widget.coords || { x: 0, y: 0 }, dm)
 
-    widgets.forEach(w => {
-      const { x, y } = coordsInPixels(w.coords || { x: 0, y: 0 }, dm)
-      updateSize(w)
-      w.state.container.style.transform = `translate(${x}px, ${y}px)`
-      w.render()
-    })
+    updateSize(widget)
+    widget.state.container.style.transform = `translate(${x}px, ${y}px)`
+    widget.render()
+  }
+
+  function update() {
+    widgets.forEach(updateWidget)
   }
 
   function add(widget) {
@@ -144,7 +145,7 @@ export default function() {
 
     setUpEvents($el, $root, widget, dm, update)
     widget.init($el[0])
-    updateSize(widget)
+    updateWidget(widget)
   }
 
   function updateSize(widget) {

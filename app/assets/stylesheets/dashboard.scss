@@ -184,10 +184,14 @@ nav {
   left: 0;
 
   transition: opacity 200ms,
-              transform 100ms;
+              transform 50ms;
 
   &.hidden {
     opacity: 0;
+  }
+
+  &.no-transition {
+    transition: none;
   }
 
   .dashboard-grid-fill {
@@ -256,20 +260,32 @@ nav {
               transform 100ms;
 }
 
+$toolbar-button-size: 24px;
+
 .widget-toolbar-button {
   display: block;
   text-align: center;
-  line-height: 20px;
-  width: 20px;
+  line-height: $toolbar-button-size;
+  width: $toolbar-button-size;
+  height: $toolbar-button-size;
+  flex-basis: $toolbar-button-size;
   margin: 5px;
-  border-radius: 50%;
+  border-radius: 2px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   text-decoration: none;
   font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &:hover {
     background-color: var(--accent-color);
     color: #fff;
+  }
+
+  img {
+    width: 12px;
+    height: 12px;
   }
 }
