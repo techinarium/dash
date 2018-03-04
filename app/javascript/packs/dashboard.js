@@ -45,6 +45,11 @@ $(document).on('turbolinks:load', () => {
         widget.state.widgetID = instance.widget_id
         widget.state.data = instance.data
 
+        widget.coords = {
+          x: instance.coord_x,
+          y: instance.coord_y
+        }
+
         if (instance.size_x && instance.size_y) {
           widget.state.size = instance.size_x + 'x' + instance.size_y
         }
@@ -69,12 +74,13 @@ $(document).on('turbolinks:load', () => {
 
         widget.on('stateChanged', state => {
           const [size_x, size_y] = state.size.split('x').map(n => parseInt(n))
+          const { x, y } = state.coords
           const sendable = {
             data: state.data,
             size_x,
             size_y,
-            coord_x: 0,
-            coord_y: 0,
+            coord_x: x,
+            coord_y: y,
           }
 
           $.ajax(`/widget_instances/${instance.id}.json`, {

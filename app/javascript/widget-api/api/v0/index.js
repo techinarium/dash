@@ -7,8 +7,10 @@ import _render from './render.private.js'
 export default function() {
   // Mutable state object shared by the API functions
   const state = {
+    container: null,
     dom: null, // Root node resulting from layout.render()
     root: null, // Container that 'dom' gets attached to
+    isRendered: false,
     size: null,
     data: {},
     layouts: []
@@ -50,14 +52,24 @@ export default function() {
       once(event, func) {
         events.once(event, func)
       },
-      init(root) {
+      init(container) {
         if (!state.data || Object.keys(state.data).length === 0) data._load()
         state.size = state.size || (state.layouts.find(l => l.default) || state.layouts[0]).size
-        render(root)
+
+        state.container = container
+        state.root = container.querySelector('.widget-root')
+
+        render()
       },
-      setCoords(x, y) {
-        state.coords = { x, y }
-        event.emit('coordsChanged', state)
+      set coords(val) {
+        state.coords = {
+          x: val.x,
+          y: val.y
+        }
+        events.emit('coordsChanged', state)
+      },
+      get coords() {
+        return state.coords
       },
       render,
     },

@@ -45,18 +45,6 @@ nav {
   }
 }
 
-.dashboard-content {
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-between;
-  
-  flex: 1 1 100%;
-}
-
-#dashboard-widgets {
-  padding: 0.5em;
-}
-
 /*========================*\
 ||   Widget List / Menu   ||
 \*========================*/
@@ -145,14 +133,107 @@ nav {
 }
 
 /*=================*\
+||    Dashboard    ||
+\*=================*/
+
+.dashboard-content {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  
+  flex: 1 1 100%;
+}
+
+#dashboard-widgets {
+  width: 100%;
+  position: relative;
+  margin: 0 auto;
+
+  @media (min-width: 400px) {
+    width: 400px;
+  }
+
+  @media (min-width: 600px) {
+    width: 600px;
+  }
+
+  @media (min-width: 800px) {
+    width: 800px;
+  }
+
+  @media (min-width: 1200px) {
+    width: 1200px;
+  }
+}
+
+#dashboard-grid {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.dashboard-grid-square {
+  padding: 0.25em;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: opacity 200ms,
+              transform 50ms;
+
+  &.hidden {
+    opacity: 0;
+  }
+
+  &.no-transition {
+    transition: none;
+  }
+
+  &.invalid {
+    // For placements that overlap with other widgets
+    background-color: rgba(255, 60, 80, 0.5)
+  }
+
+  .dashboard-grid-fill {
+    width: 100%;
+    height: 100%;
+    background-color: #ddd;
+  }
+}
+
+.placeholder-pixel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+/*=================*\
 ||     Widgets     ||
 \*=================*/
 
-.widget-root {
-  position: relative;
+.widget-container {
+  position: absolute;
+  padding: 0.25em;
   width: 150px;
   height: 150px;
-  margin: 10px;
+
+  transition: opacity 100ms,
+              transform 200ms;
+
+  &.dragging {
+    opacity: 0.5;
+  }
+}
+
+.widget-root {
+  position: relative;
+  width: 100%;
+  height: 100%;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
   
   .widget-toolbar {
@@ -167,10 +248,6 @@ nav {
       transform: translateY(0px);
       pointer-events: all;
     }
-  }
-
-  &.dragging {
-    opacity: 0.5;
   }
 }
 
@@ -187,20 +264,32 @@ nav {
               transform 100ms;
 }
 
+$toolbar-button-size: 24px;
+
 .widget-toolbar-button {
   display: block;
   text-align: center;
-  line-height: 20px;
-  width: 20px;
+  line-height: $toolbar-button-size;
+  width: $toolbar-button-size;
+  height: $toolbar-button-size;
+  flex-basis: $toolbar-button-size;
   margin: 5px;
-  border-radius: 50%;
+  border-radius: 2px;
   background-color: rgba(0, 0, 0, 0.5);
   color: #fff;
   text-decoration: none;
   font-size: 0.8em;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   
   &:hover {
     background-color: var(--accent-color);
     color: #fff;
+  }
+
+  img {
+    width: 12px;
+    height: 12px;
   }
 }
