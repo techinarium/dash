@@ -57,7 +57,7 @@ function getDragCoords(e, $root, widget, unitSize, dragCoordOffset) {
   return { x, y }
 }
 
-function setUpEvents($el, $root, widget, dm, update) {
+function setUpEvents($el, $root, widget, dm, update, widgets) {
   let dragImage
   const $gridGuide = $('.dashboard-grid-square')
 
@@ -102,7 +102,6 @@ function setUpEvents($el, $root, widget, dm, update) {
 
       if (coordsAreDifferent) {
         moveGridGuideTo(coordsInPixels(coords, dm), $gridGuide)
-
         last = coords
       }
 
@@ -143,7 +142,7 @@ export default function() {
 
     // console.log(`${widgets.length} widget${widgets.length === 1 ? ' is' : 's are'} loaded`)
 
-    setUpEvents($el, $root, widget, dm, update)
+    setUpEvents($el, $root, widget, dm, update, widgets)
     widget.init($el[0])
     updateWidget(widget)
   }
