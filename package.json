@@ -3,7 +3,7 @@
   "private": true,
   "dependencies": {
     "@rails/webpacker": "^3.2.2",
-    "@techinarium/widget-api": "git+https://github.com/techinarium/widget-api.git"
+    "webpack": "^4.0.1"
   },
   "devDependencies": {
     "babel-preset-env": "^1.6.1",
