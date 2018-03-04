@@ -3,8 +3,20 @@ document.addEventListener('turbolinks:load', function(){
     $("#widget-list").css("display", "none");
     $(".menu-link").hide(); //hide the Account Settings, Logout & Widget Store links
 
+    //fade the notification in, hide after 4 seconds
+    var notifications = $(".general-alerts");
+    notifications.hide();
+    notifications.fadeIn();
+    notifications.delay(3000).fadeOut();
+
+    $("#hide-alert").click(function(e){
+        e.preventDefault();
+        notifications.hide();
+    });
+
     $("#menuBtn").click(function(e){
         e.preventDefault();
+        notifications.hide();
         if(this.innerHTML === "MENU"){
             //change text to "close", then show links & widget list
             this.innerHTML = "CLOSE";
