@@ -5,7 +5,6 @@
 <div class="store-container">
   <div class="store-pane">
     <h1>Widget Store</h1>
-
     <% if !@widgets.nil? && @widgets.size != 0 %>
       <% @widgets.each do |widget| %>
         <%= link_to widget do %>
@@ -35,33 +34,25 @@
     <% end %>
   </div>
 </div>
-
-<!--
-<table>
-  <thead>
-    <tr>
-      <th>Widget name</th>
-      <th>Logo url</th>
-      <th>Description</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @widgets.each do |widget| %>
-      <tr>
-        <td><%= widget.widget_name %></td>
-        <td><%= widget.logo_url %></td>
-        <td><%= widget.description %></td>
-        <td><%= link_to 'Show', widget %></td>
-        <td><%= link_to 'Edit', edit_widget_path(widget) %></td>
-        <td><%= link_to 'Destroy', widget, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
+<div class="store-container">
+  <div class="store-pane">
+    <h1>Top 10 Widgets</h1>
+    <% @top_10.each do |widget| %>
+      <%= link_to widget do %>
+        <figure>
+          <div class="widget-logo-bg">
+            <% if !widget.logo_url.nil? && widget.logo_url != "" %>
+              <%= image_tag widget.logo_url, alt: widget.widget_name %>
+            <% else %>
+              <p>X</p>
+            <% end %>
+          </div>
+          <figcaption>
+            <span class="widget-title"><%= widget.widget_name %></span>
+            <span class="widget-rating"><%= widget.reviews.all.average(:rating).round %> &#9733;</span>
+          </figcaption>
+        </figure>
+      <% end %>
     <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Widget', new_widget_path %>
--->
+  </div>
+</div>

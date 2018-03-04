@@ -9,6 +9,10 @@ class WidgetsController < ApplicationController
                      .joins(:widget_codes)
                      .where('published = ?', true)
                      .uniq
+
+    @top_10 = @widgets.reject { |w| w.reviews.all.average(:rating).nil? }
+    @top_10.sort_by! { |w| w.reviews.all.average(:rating) }.reverse!
+    @top_10.slice!(10..@top_10.count)
   end
 
   # GET /widgets/1
