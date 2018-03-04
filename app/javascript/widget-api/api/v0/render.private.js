@@ -2,6 +2,10 @@ import _element from './element.js'
 
 export default function(state, events) {
   return function(root) {
+    if (state.isRendered) {
+      return false
+    }
+
     const { RAW } = _element(state)
 
     root = root || state.root
@@ -41,5 +45,7 @@ export default function(state, events) {
 
     // root.appendChild(toolbar)
     root.appendChild(state.dom)
+
+    state.isRendered = true
   }
 }

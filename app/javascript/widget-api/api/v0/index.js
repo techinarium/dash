@@ -7,8 +7,10 @@ import _render from './render.private.js'
 export default function() {
   // Mutable state object shared by the API functions
   const state = {
+    container: null,
     dom: null, // Root node resulting from layout.render()
     root: null, // Container that 'dom' gets attached to
+    isRendered: false,
     size: null,
     data: {},
     layouts: []
@@ -59,9 +61,15 @@ export default function() {
 
         render()
       },
-      setCoords(x, y) {
-        state.coords = { x, y }
-        event.emit('coordsChanged', state)
+      set coords(val) {
+        state.coords = {
+          x: val.x,
+          y: val.y
+        }
+        events.emit('coordsChanged', state)
+      },
+      get coords() {
+        return state.coords
       },
       render,
     },

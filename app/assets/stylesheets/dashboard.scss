@@ -177,12 +177,31 @@ nav {
 
 .dashboard-grid-square {
   padding: 0.25em;
+  opacity: 1;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  transition: opacity 200ms,
+              transform 100ms;
+
+  &.hidden {
+    opacity: 0;
+  }
 
   .dashboard-grid-fill {
     width: 100%;
     height: 100%;
-    background-color: #eee;
+    background-color: #ddd;
   }
+}
+
+.placeholder-pixel {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
 }
 
 /*=================*\
@@ -194,6 +213,13 @@ nav {
   padding: 0.25em;
   width: 150px;
   height: 150px;
+
+  transition: opacity 100ms,
+              transform 200ms;
+
+  &.dragging {
+    opacity: 0.5;
+  }
 }
 
 .widget-root {
@@ -214,10 +240,6 @@ nav {
       transform: translateY(0px);
       pointer-events: all;
     }
-  }
-
-  &.dragging {
-    opacity: 0.5;
   }
 }
 
