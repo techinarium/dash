@@ -2,9 +2,9 @@ import _element from './element.js'
 
 export default function(state, events) {
   return function(root) {
-    if (state.isRendered) {
-      return false
-    }
+    // if (state.isRendered) {
+    //   return false
+    // }
 
     const { RAW } = _element(state)
 
@@ -30,22 +30,23 @@ export default function(state, events) {
       state.dom = layouts[0].render()
     }
   
-    const toolbar = RAW('div', { class: 'widget-toolbar' }, [
-      RAW('a', {
-        href: '#',
-        class: 'widget-toolbar-button',
-        onClick: e => {
-          e.preventDefault()
-          events.emit('destroyRequested', state.instanceID)
-        }
-      }, [
-        RAW('img', { src: '/widget-x-icon.png' })
+    if (!state.isRendered) {
+      const toolbar = RAW('div', { class: 'widget-toolbar' }, [
+        RAW('a', {
+          href: '#',
+          class: 'widget-toolbar-button',
+          onClick: e => {
+            e.preventDefault()
+            events.emit('destroyRequested', state.instanceID)
+          }
+        }, [
+          RAW('img', { src: '/widget-x-icon.png' })
+        ])
       ])
-    ])
-    
-    root.appendChild(toolbar)
 
-    // root.appendChild(toolbar)
+      root.appendChild(toolbar)
+    }
+
     root.appendChild(state.dom)
 
     state.isRendered = true
