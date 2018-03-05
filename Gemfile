@@ -66,7 +66,7 @@ gem "jquery-rails", "~> 4.3"
 gem 'faker'
 
 # Using webpack to bundle all the dashboard stuff
-gem 'webpacker', '~> 3.2'
+gem 'webpacker', '~> 3.3'
 
 # Added at 2018-03-01 11:48:18 -0800 by schwingbat:
 gem "figaro", "~> 1.1"
